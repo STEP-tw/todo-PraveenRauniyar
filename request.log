@@ -617,3 +617,2202 @@ COOKIES=> {
   "sessionid": "1515826207799"
 }
 BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:40:32 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:40:32 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:40:32 PM
+GET /welcomePage.html
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:40:32 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:40:32 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:40:32 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "username": "arvind"
+}
+------------------------------
+Sat Jan 13 2018 12:40:32 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "username": "badUser"
+}
+------------------------------
+Sat Jan 13 2018 12:44:56 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:44:56 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:44:56 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:44:56 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:44:56 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "username": "arvind"
+}
+------------------------------
+Sat Jan 13 2018 12:44:56 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "username": "badUser"
+}
+------------------------------
+Sat Jan 13 2018 12:46:20 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:46:20 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:46:20 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:46:20 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:46:20 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "username": "arvind"
+}
+------------------------------
+Sat Jan 13 2018 12:46:20 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "username": "badUser"
+}
+------------------------------
+Sat Jan 13 2018 12:47:34 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:47:34 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:47:34 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:47:34 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:47:34 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "username": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 12:47:34 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "username": "badUser"
+}
+------------------------------
+Sat Jan 13 2018 12:48:32 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:48:32 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:48:32 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:48:32 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:48:32 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 12:48:32 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "username": "badUser"
+}
+------------------------------
+Sat Jan 13 2018 12:49:20 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:49:20 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:49:20 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:49:20 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:49:20 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 12:49:20 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "badUser"
+}
+------------------------------
+Sat Jan 13 2018 12:50:03 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:50:03 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:50:03 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:50:03 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:50:03 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 12:50:03 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 12:51:14 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:51:14 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:51:14 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:51:14 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:51:14 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 12:51:14 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 12:53:14 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:53:14 PM
+GET /welcomePage.html
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:53:14 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:53:14 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:53:14 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 12:53:14 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 12:54:19 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:54:19 PM
+GET /welcomePage.html
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:54:19 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:54:19 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:54:19 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 12:54:19 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 12:54:54 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:54:54 PM
+GET /welcomePage.html
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:54:54 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:54:54 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:54:54 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 12:54:54 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 12:55:29 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:55:29 PM
+GET /welcomePage.html
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:55:29 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:55:29 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:55:29 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 12:55:29 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 12:55:51 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:55:51 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:55:51 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:55:51 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:55:51 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 12:55:51 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 12:56:57 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:56:57 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:56:57 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:56:57 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:56:57 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 12:56:57 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 12:57:40 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:57:40 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:57:40 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:57:40 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:57:40 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 12:57:40 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 12:57:56 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:57:56 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:57:56 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:57:56 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:57:56 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 12:57:56 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 12:58:15 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:58:15 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:58:15 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:58:15 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:58:15 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 12:58:15 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 12:59:32 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:59:32 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:59:32 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:59:32 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:59:32 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 12:59:32 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 12:59:57 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:59:57 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:59:57 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:59:57 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 12:59:57 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 12:59:57 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:00:13 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:00:13 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:00:13 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:00:13 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:00:13 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:00:13 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:00:32 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:00:32 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:00:32 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:00:32 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:00:32 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:00:32 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:01:48 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:01:48 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:01:48 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:01:48 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:01:48 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:01:48 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:01:58 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:01:58 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:01:58 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:01:58 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:01:58 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:01:58 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:02:17 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:02:17 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:02:17 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:02:17 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:02:17 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:02:17 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:02:45 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:02:45 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:02:45 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:02:45 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:02:45 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:02:45 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:04:50 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:04:50 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:04:50 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:04:50 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:04:50 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:04:50 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:06:58 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:06:58 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:06:58 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:06:58 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:06:58 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:06:58 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:10:39 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:10:39 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:10:39 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:10:39 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:10:39 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:10:39 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:11:18 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:11:18 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:11:18 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:11:18 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:11:18 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:11:18 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:13:49 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:13:49 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:13:49 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:13:49 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:13:49 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:13:49 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:14:42 PM
+GET /welcomePage.html
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "cache-control": "max-age=0",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "upgrade-insecure-requests": "1",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=1515826207799"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "1515826207799"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:14:42 PM
+GET /style/toDo.css
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/css,*/*;q=0.1",
+  "referer": "http://localhost:8888/welcomePage.html",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=1515826207799"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "1515826207799"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:14:45 PM
+GET /login
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "upgrade-insecure-requests": "1",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "referer": "http://localhost:8888/welcomePage.html",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=1515826207799"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "1515826207799"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:14:45 PM
+GET /style/toDo.css
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/css,*/*;q=0.1",
+  "referer": "http://localhost:8888/login",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=1515826207799"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "1515826207799"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:14:47 PM
+POST /login
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "content-length": "27",
+  "cache-control": "max-age=0",
+  "origin": "http://localhost:8888",
+  "upgrade-insecure-requests": "1",
+  "content-type": "application/x-www-form-urlencoded",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "referer": "http://localhost:8888/login",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=1515826207799"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "1515826207799"
+}
+BODY=> {
+  "userName": "Praveen",
+  "Password": "g"
+}
+------------------------------
+Sat Jan 13 2018 1:14:47 PM
+GET /welcomePage.html
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "cache-control": "max-age=0",
+  "upgrade-insecure-requests": "1",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "referer": "http://localhost:8888/login",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=1515829487173"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "1515829487173"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:14:47 PM
+GET /style/toDo.css
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/css,*/*;q=0.1",
+  "referer": "http://localhost:8888/welcomePage.html",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=1515829487173"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "1515829487173"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:15:03 PM
+GET /login
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "upgrade-insecure-requests": "1",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "referer": "http://localhost:8888/welcomePage.html",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=1515829487173"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "1515829487173"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:15:03 PM
+GET /welcomePage.html
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "upgrade-insecure-requests": "1",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "referer": "http://localhost:8888/welcomePage.html",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=1515829487173"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "1515829487173"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:15:03 PM
+GET /style/toDo.css
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/css,*/*;q=0.1",
+  "referer": "http://localhost:8888/welcomePage.html",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=1515829487173"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "1515829487173"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:15:05 PM
+GET /login
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "upgrade-insecure-requests": "1",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "referer": "http://localhost:8888/welcomePage.html",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=1515829487173"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "1515829487173"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:15:05 PM
+GET /welcomePage.html
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "upgrade-insecure-requests": "1",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "referer": "http://localhost:8888/welcomePage.html",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=1515829487173"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "1515829487173"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:15:05 PM
+GET /style/toDo.css
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/css,*/*;q=0.1",
+  "referer": "http://localhost:8888/welcomePage.html",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=1515829487173"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "1515829487173"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:15:11 PM
+GET /logout
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "upgrade-insecure-requests": "1",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=1515829487173"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "1515829487173"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:15:11 PM
+GET /login
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "upgrade-insecure-requests": "1",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=0,Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "0,Expires"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:15:11 PM
+GET /style/toDo.css
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/css,*/*;q=0.1",
+  "referer": "http://localhost:8888/login",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=0,Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "0,Expires"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:15:18 PM
+POST /login
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "content-length": "26",
+  "cache-control": "max-age=0",
+  "origin": "http://localhost:8888",
+  "upgrade-insecure-requests": "1",
+  "content-type": "application/x-www-form-urlencoded",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "referer": "http://localhost:8888/login",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=0,Expires=Thu, 01 Jan 1970 00:00:00 GMT"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "0,Expires"
+}
+BODY=> {
+  "userName": "yhuijo",
+  "Password": "g"
+}
+------------------------------
+Sat Jan 13 2018 1:15:18 PM
+GET /login
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "cache-control": "max-age=0",
+  "upgrade-insecure-requests": "1",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "referer": "http://localhost:8888/login",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=0,Expires=Thu, 01 Jan 1970 00:00:00 GMT; logInFailed=true"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "0,Expires",
+  "logInFailed": "true"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:15:18 PM
+GET /style/toDo.css
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/css,*/*;q=0.1",
+  "referer": "http://localhost:8888/login",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=0,Expires=Thu, 01 Jan 1970 00:00:00 GMT; logInFailed=true"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "0,Expires",
+  "logInFailed": "true"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:16:39 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:16:39 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:16:39 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:16:39 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:16:39 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:16:39 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:17:57 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:17:57 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:17:57 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:17:57 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:17:57 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:17:57 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:20:07 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:20:07 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:20:07 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:20:07 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:20:07 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:20:07 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:21:16 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:21:16 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:21:16 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:21:16 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:21:16 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:21:16 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:22:15 PM
+GET /login
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "cache-control": "max-age=0",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "upgrade-insecure-requests": "1",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "referer": "http://localhost:8888/login",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=0,Expires=Thu, 01 Jan 1970 00:00:00 GMT; logInFailed=true"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "0,Expires",
+  "logInFailed": "true"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:22:15 PM
+GET /style/toDo.css
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/css,*/*;q=0.1",
+  "referer": "http://localhost:8888/login",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=0,Expires=Thu, 01 Jan 1970 00:00:00 GMT; logInFailed=true"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "0,Expires",
+  "logInFailed": "true"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:22:21 PM
+POST /login
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "content-length": "27",
+  "cache-control": "max-age=0",
+  "origin": "http://localhost:8888",
+  "upgrade-insecure-requests": "1",
+  "content-type": "application/x-www-form-urlencoded",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "referer": "http://localhost:8888/login",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=0,Expires=Thu, 01 Jan 1970 00:00:00 GMT; logInFailed=true"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "0,Expires",
+  "logInFailed": "true"
+}
+BODY=> {
+  "userName": "rtyuijo",
+  "Password": "g"
+}
+------------------------------
+Sat Jan 13 2018 1:22:21 PM
+GET /login
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "cache-control": "max-age=0",
+  "upgrade-insecure-requests": "1",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "referer": "http://localhost:8888/login",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=0,Expires=Thu, 01 Jan 1970 00:00:00 GMT; logInFailed=true"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "0,Expires",
+  "logInFailed": "true"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:22:21 PM
+GET /style/toDo.css
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/css,*/*;q=0.1",
+  "referer": "http://localhost:8888/login",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "loginFailed=false,Expires=Thu, 01 Jan 1970 00:00:00 GMT; sessionid=0,Expires=Thu, 01 Jan 1970 00:00:00 GMT; logInFailed=true"
+}
+COOKIES=> {
+  "loginFailed": "false,Expires",
+  "sessionid": "0,Expires",
+  "logInFailed": "true"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:23:19 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:23:19 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:23:19 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:23:19 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:23:19 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:23:19 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:26:25 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:26:25 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:26:25 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:26:25 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:26:25 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:26:25 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:28:03 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:28:03 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:28:03 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:28:03 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:28:03 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:28:03 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:30:01 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:30:01 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:30:01 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:30:01 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:30:01 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:30:01 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 1:30:13 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:30:14 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:30:14 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:30:14 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 1:30:14 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 1:30:14 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}

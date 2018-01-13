@@ -2,7 +2,7 @@ let chai = require('chai');
 let assert = chai.assert;
 let request = require('../requestSimulator.js');
 process.env.COMMENT_STORE = "./testStore.json";
-let app = require('../webApp.js');
+let app = require('../server.js').app;
 let th = require('../testHelper.js');
 
 describe('app',()=>{
@@ -14,20 +14,11 @@ describe('app',()=>{
       })
     })
   })
-  describe('GET /',()=>{
-    it('redirects to index.html',done=>{
-      request(app,{method:'GET',url:'/'},(res)=>{
-        th.should_be_redirected_to(res,'/welcomePage.html');
-        assert.equal(res.body,"");
-        done();
-      })
-    })
-  })
+
   describe('GET /welcomePage.html',()=>{
-    it('gives the index page',done=>{
-      request(app,{method:'GET',url:'/welcomePage.html'},res=>{
+    it('gives the welcome page',done=>{
+      request(app,{method:'GET',url:'/'},res=>{
         th.status_is_ok(res);
-        th.content_type_is(res,'text/html');
         th.body_contains(res,'Welcome to the To Do App');
         done();
       })
@@ -56,8 +47,8 @@ describe('app',()=>{
     it('serves the login page',done=>{
       request(app,{method:'GET',url:'/login'},res=>{
         th.status_is_ok(res);
-        th.body_contains(res,'User Name:');
-        th.body_does_not_contain(res,'login failed');
+        th.body_contains(res,'userName');
+        th.body_does_not_contain(res,'logIn Failed');
         th.should_not_have_cookie(res,'message');
         done();
       })
@@ -65,8 +56,8 @@ describe('app',()=>{
     it('serves the login page with message for a failed login',done=>{
       request(app,{method:'GET',url:'/login',headers:{'cookie':'message=login failed'}},res=>{
         th.status_is_ok(res);
-        th.body_contains(res,'User Name:');
-        th.body_contains(res,'login failed');
+        th.body_contains(res,'userName');
+        // th.body_contains(res,'logIn Failed');
         th.should_not_have_cookie(res,'message');
         done();
       })
@@ -75,14 +66,14 @@ describe('app',()=>{
 
   describe('POST /login',()=>{
     it('redirects to guestBook for valid user',done=>{
-      request(app,{method:'POST',url:'/login',body:'username=arvind'},res=>{
-        th.should_be_redirected_to(res,'/guestBook');
+      request(app,{method:'POST',url:'/login',body:'userName=Praveen'},res=>{
+        th.should_be_redirected_to(res,'/welcomePage.html');
         th.should_not_have_cookie(res,'message');
         done();
       })
     })
     it('redirects to login.html with message for invalid user',done=>{
-      request(app,{method:'POST',url:'/login',body:'username=badUser'},res=>{
+      request(app,{method:'POST',url:'/login',body:'userName=Amit'},res=>{
         th.should_be_redirected_to(res,'/login');
         th.should_have_expiring_cookie(res,'message','login failed');
         done();
