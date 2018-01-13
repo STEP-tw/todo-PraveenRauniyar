@@ -11,7 +11,7 @@ const accumulate = (o, kv) => {
   return o;
 };
 
-const parseBody = function (text){
+const parseBody = function(text) {
   return text && text.split('&').map(toKeyValue).reduce(accumulate, {}) || {};
 };
 
@@ -32,11 +32,8 @@ const parseCookies = text => {
 
 let invoke = function(req, res) {
   let handler = this._handlers[req.method][req.url];
-  if (!handler) {
-    res.end();
-    return;
-  };
-  handler(req, res);
+  if (handler)
+    handler(req, res);
 };
 
 const initialize = function() {
@@ -68,41 +65,31 @@ const urlIsOneOf = function(urls) {
   return urls.includes(this.url);
 };
 
-const parseCookiesAndBindRes = function (req,res) {
+const parseCookiesAndBindRes = function(req, res) {
   res.redirect = redirect.bind(res);
   req.urlIsOneOf = urlIsOneOf.bind(req);
   req.cookies = parseCookies(req.headers.cookie || '');
 };
 
-const postprocess = function (req,res) {
-  this._postprocess.forEach(middleware => {
-    middleware(req, res);
-    return;
-  });
-};
-
-const preprocess = function (req,res,content) {
-  req.body = parseBody(content);
-  content = "";
-  this._preprocess.forEach(middleware => {
+const runProcess = function(processors,req, res) {
+  processors.forEach(middleware => {
     if (res.finished) return;
     middleware(req, res);
   });
 };
 
+
 const main = function(req, res) {
-  parseCookiesAndBindRes(req,res);
+  parseCookiesAndBindRes(req, res);
   let content = "";
   req.on('data', data => content += data.toString());
   req.on('end', () => {
-    preprocess.call(this,req,res,content);
-    let urlList = ["/guestBook.html","/login","/logout"];
-    if (urlList.includes(req.url)) {
+      req.body = parseBody(content);
+      runProcess(this._preprocess,req,res)
+      if (res.finished) return;
       invoke.call(this, req, res);
-      return;
-    } else {
-      postprocess.call(this,req,res);
-    }
+      if (res.finished) return;
+      runProcess(this._postprocess, req, res);
   });
 };
 

@@ -5,10 +5,10 @@ const WebApp = require('./webapp');
 
 let registered_users = [{
   userName: 'Praveen',
-  Password: 'Guptaji'
+  Password: 'g'
 }, {
   userName: 'Manish',
-  Password: 'Yadavji'
+  Password: 'y'
 }];
 
 let toString = o => JSON.stringify(o, null, 2);
@@ -49,7 +49,7 @@ let loadUser = (req, res) => {
 };
 
 let redirectLoggedInUserToHome = (req, res) => {
-  if (req.urlIsOneOf(['/login']) && req.user) res.redirect('homePage.html');
+  if (req.urlIsOneOf(['/login']) && req.user) res.redirect('welcomePage.html');
 };
 
 let redirectLoggedOutUserToLogin = (req, res) => {
@@ -72,7 +72,7 @@ const getLoginPage = function(req,res) {
 
 app.get('/login', (req, res) => {
   if(req.user) {
-    res.redirect('/homePage.html');
+    res.redirect('/welcomePage.html');
     return;
   }
   res.setHeader('Content-type', "text/html");
@@ -81,32 +81,27 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-  let user = registered_users.find(u => u.userName == req.body.userName && u.Password == req.body.Password);
-  console.log(user);
-  if (!user) {
+  let user = registered_users.find(u=>u.userName==req.body.userName);
+  if(!user) {
+    res.setHeader('Set-Cookie',`logInFailed=true`);
     res.redirect('/login');
     return;
-  };
+  }
   let sessionid = new Date().getTime();
   res.setHeader('Set-Cookie', `sessionid=${sessionid}`);
   user.sessionid = sessionid;
-  res.redirect('/homePage.html');
+  res.redirect('/welcomePage.html');
 });
 
-
-// app.get('/logout', (req, res) => {
-//   if(!req.user) {
-//     res.redirect('/login');
-//     return;
-//   }
-//   res.setHeader('Set-Cookie', [`logInFailed=false`, `sessionid=0,Expires=${new Date(1).toUTCString()}`]);
-//   delete req.user.sessionid;
-//   res.redirect('/login');
-// });
+app.get('/logout',(req,res)=>{
+  res.setHeader('Set-Cookie',[`loginFailed=false,Expires=${new Date(1).toUTCString()}`,`sessionid=0,Expires=${new Date(1).toUTCString()}`]);
+  delete req.user.sessionid;
+  res.redirect('/login');
+});
 
 const getFilePath = function (req) {
   if (req.url == "/") {
-    return `./public/index.html`;
+    return `./public/welcomePage.html`;
   };
   return `./public${req.url}`;
 };
@@ -129,7 +124,7 @@ const responseError = function(res) {
   res.end();
 };
 
-const PORT = 5000;
+const PORT = 8888;
 let server = http.createServer(app);
 server.on('error', e => console.error('**error**', e.message));
 server.listen(PORT, (e) => console.log(`server listening at ${PORT}`));
