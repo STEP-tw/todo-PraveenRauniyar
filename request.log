@@ -7465,3 +7465,179 @@ COOKIES=> {
   "sessionid": "1515835719575"
 }
 BODY=> {}
+------------------------------
+Sat Jan 13 2018 3:43:04 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 3:43:04 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 3:43:04 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 3:43:04 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 3:43:04 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 3:43:04 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 3:43:50 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 3:43:50 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 3:43:50 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 3:43:50 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 3:43:50 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 3:43:50 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 3:44:29 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 3:44:29 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 3:44:29 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 3:44:29 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 3:44:29 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 3:44:29 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sat Jan 13 2018 3:48:47 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 3:48:47 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 3:48:47 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 3:48:47 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sat Jan 13 2018 3:48:47 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sat Jan 13 2018 3:48:47 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}

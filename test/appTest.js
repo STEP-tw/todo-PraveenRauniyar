@@ -57,7 +57,6 @@ describe('app',()=>{
       request(app,{method:'GET',url:'/login',headers:{'cookie':'message=login failed'}},res=>{
         th.status_is_ok(res);
         th.body_contains(res,'userName');
-        th.body_contains(res,'logIn Failed');
         th.should_not_have_cookie(res,'message');
         done();
       })
@@ -67,7 +66,7 @@ describe('app',()=>{
   describe('POST /login',()=>{
     it('redirects to guestBook for valid user',done=>{
       request(app,{method:'POST',url:'/login',body:'userName=Praveen'},res=>{
-        th.should_be_redirected_to(res,'/welcomePage.html');
+        th.should_be_redirected_to(res,'/homePage.html');
         th.should_not_have_cookie(res,'message');
         done();
       })
