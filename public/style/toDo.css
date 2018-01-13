@@ -31,9 +31,11 @@ body {
 }
 
 .Header {
+  height: 150px;
   padding-left: 180px;
   font-size: 70px;
   color: #ff9933;
+  border-bottom: 2px solid black
 };
 
 .nameBox {
@@ -43,37 +45,26 @@ body {
   font-size: 20px;
   text-align: left;
 }
-
-.commentBox {
-  height: 100px;
-  width: 200px;
-  resize: none;
-  text-align: left;
-  font-size: 25px;
+.home-Page{
+  height: 750px;
+  width: 1600px;
+  /* border: 4px solid black; */
 }
 
-.sequance-of-comments {
-  height: 50px;
-  width: 1600px;
+.to-do-list{
+  height: 650px;
   font-size: 30px;
-  font-weight: lighter;
-  text-align: left;
-  word-spacing: 300px;
-}
+  float : left;
+  width: 700px;
+  padding-top: 100px;
+  padding-left: 100px;
+};
 
-.form-Part {
-  height: 300px;
-  width: 1600px;
-}
-.comment {
-  height: 400px;
-  width: 1600px;
-  font-weight:bold;
-}
-
-.comment-Store {
-  font-size: 20px;
-  font-weight: lighter;
-  text-align: left;
-  word-spacing: 10px
+.menu-Option{
+  padding-top: 100px;
+  height: 550px;
+  float : left;
+  width: 700px;
+  font-size: 70px;
+  border: 4px solid Black;
 }

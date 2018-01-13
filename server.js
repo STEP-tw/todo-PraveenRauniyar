@@ -47,7 +47,7 @@ let loadUser = (req, res) => {
 };
 
 let redirectLoggedInUserToHome = (req, res) => {
-  if (req.urlIsOneOf(['/login']) && req.user) res.redirect('welcomePage.html');
+  if (req.urlIsOneOf(['/login']) && req.user) res.redirect('homePage.html');
 };
 
 let redirectLoggedOutUserToLogin = (req, res) => {
@@ -70,7 +70,7 @@ const getLoginPage = function(req,res) {
 
 app.get('/login', (req, res) => {
   if(req.user) {
-    res.redirect('/welcomePage.html');
+    res.redirect('/homePage.html');
     return;
   }
   res.setHeader('Content-type', "text/html");
@@ -88,7 +88,7 @@ app.post('/login', (req, res) => {
   let sessionid = new Date().getTime();
   res.setHeader('Set-Cookie', `sessionid=${sessionid}`);
   user.sessionid = sessionid;
-  res.redirect('/welcomePage.html');
+  res.redirect('/homePage.html');
 });
 
 app.get('/logout',(req,res)=>{

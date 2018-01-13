@@ -57,7 +57,7 @@ describe('app',()=>{
       request(app,{method:'GET',url:'/login',headers:{'cookie':'message=login failed'}},res=>{
         th.status_is_ok(res);
         th.body_contains(res,'userName');
-        // th.body_contains(res,'logIn Failed');
+        th.body_contains(res,'logIn Failed');
         th.should_not_have_cookie(res,'message');
         done();
       })
