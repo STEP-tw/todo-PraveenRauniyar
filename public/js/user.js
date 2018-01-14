@@ -11,5 +11,4 @@ class User {
     let toDo = new ToDo(title,discription,text);
     this.userAllToDo[toDo.title] = toDo;
   };
-
 }
