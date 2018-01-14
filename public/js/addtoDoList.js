@@ -5,9 +5,6 @@ class AddToDo {
     this.Id = new Date().toLocalDateString();
     this.toDoItem = toDoText;
   },
-  removeToDoList : function () {
-    delete this.title;
-  },
   removeToDoItem : function () {
     delete this.toDoText[toDoText]
   },
