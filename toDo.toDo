@@ -1,15 +1,15 @@
 Objective :
   ☐ Build a web application that helps a person maintain to-do list(s)
  Features :
-  ☐ First Welcome page and add link for login.
-  ☐ Log in to their account.
-  ☐ Log out of their account.
+  ✔ First Welcome page and add link for login. @done(2018-01-14 17:58) @project(Objective  / Features )
+  ✔ Log in to their account. @done(2018-01-14 17:58) @project(Objective  / Features )
+  ✔ Log out of their account. @done(2018-01-14 17:58) @project(Objective  / Features )
   ☐ To provide link for log out from any page.
-  ☐ The user should be taken to a home page after logging in.
+  ✔ The user should be taken to a home page after logging in. @done(2018-01-14 17:58) @project(Objective  / Features )
   ☐ On home page it should show all todo list.
   ☐ Every toDo has to link to go his own page.
   ☐ The user should be able to go back to the home page from any other page.
-  ☐ Handle not exist file.
+  ✔ Handle not exist file. @done(2018-01-14 17:58) @project(Objective  / Features )
   ☐ Add one or more to-do list(s).
   ☐ View their to-do list(s).
   ☐ Delete a to-do list.
