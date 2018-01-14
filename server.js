@@ -1,4 +1,4 @@
-let app = require("./app.js").app
+let app = require("./lib/app.js").app
 const http = require('http');
 const PORT = 8888;
 let server = http.createServer(app);
