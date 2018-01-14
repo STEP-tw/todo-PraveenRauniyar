@@ -7927,3 +7927,507 @@ COOKIES=> {
   "sessionid": "1515839498846"
 }
 BODY=> {}
+------------------------------
+Sun Jan 14 2018 5:35:28 PM
+GET /
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "upgrade-insecure-requests": "1",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "sessionid=1515839498846"
+}
+COOKIES=> {
+  "sessionid": "1515839498846"
+}
+BODY=> {}
+------------------------------
+Sun Jan 14 2018 5:35:28 PM
+GET /style/toDo.css
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/css,*/*;q=0.1",
+  "referer": "http://localhost:8888/",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "sessionid=1515839498846"
+}
+COOKIES=> {
+  "sessionid": "1515839498846"
+}
+BODY=> {}
+------------------------------
+Sun Jan 14 2018 5:35:31 PM
+GET /login
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "upgrade-insecure-requests": "1",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "referer": "http://localhost:8888/",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "sessionid=1515839498846"
+}
+COOKIES=> {
+  "sessionid": "1515839498846"
+}
+BODY=> {}
+------------------------------
+Sun Jan 14 2018 5:35:31 PM
+GET /style/toDo.css
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/css,*/*;q=0.1",
+  "referer": "http://localhost:8888/login",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "sessionid=1515839498846"
+}
+COOKIES=> {
+  "sessionid": "1515839498846"
+}
+BODY=> {}
+------------------------------
+Sun Jan 14 2018 5:35:33 PM
+POST /login
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "content-length": "27",
+  "cache-control": "max-age=0",
+  "origin": "http://localhost:8888",
+  "upgrade-insecure-requests": "1",
+  "content-type": "application/x-www-form-urlencoded",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "referer": "http://localhost:8888/login",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "sessionid=1515839498846"
+}
+COOKIES=> {
+  "sessionid": "1515839498846"
+}
+BODY=> {
+  "userName": "Praveen",
+  "Password": "g"
+}
+------------------------------
+Sun Jan 14 2018 5:35:33 PM
+GET /homePage.html
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "cache-control": "max-age=0",
+  "upgrade-insecure-requests": "1",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "referer": "http://localhost:8888/login",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "sessionid=1515931533745"
+}
+COOKIES=> {
+  "sessionid": "1515931533745"
+}
+BODY=> {}
+------------------------------
+Sun Jan 14 2018 5:35:33 PM
+GET /style/toDo.css
+HEADERS=> {
+  "host": "localhost:8888",
+  "connection": "keep-alive",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36",
+  "accept": "text/css,*/*;q=0.1",
+  "referer": "http://localhost:8888/homePage.html",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  "cookie": "sessionid=1515931533745"
+}
+COOKIES=> {
+  "sessionid": "1515931533745"
+}
+BODY=> {}
+------------------------------
+Sun Jan 14 2018 5:36:37 PM
+GET /bad
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sun Jan 14 2018 5:36:37 PM
+GET /
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sun Jan 14 2018 5:36:37 PM
+GET /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {}
+------------------------------
+Sun Jan 14 2018 5:36:37 PM
+GET /login
+HEADERS=> {
+  "cookie": "message=login failed"
+}
+COOKIES=> {
+  "message": "login failed"
+}
+BODY=> {}
+------------------------------
+Sun Jan 14 2018 5:36:37 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Praveen"
+}
+------------------------------
+Sun Jan 14 2018 5:36:37 PM
+POST /login
+HEADERS=> {}
+COOKIES=> {}
+BODY=> {
+  "userName": "Amit"
+}
+------------------------------
+Sun Jan 14 2018 5:44:55 PM
+GET /homePage.html
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:44:55 PM
+GET /style/toDo.css
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:44:58 PM
+GET /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:45:02 PM
+GET /
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:45:02 PM
+GET /style/toDo.css
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:50:58 PM
+GET /bad
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:50:58 PM
+GET /
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:50:58 PM
+GET /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:50:58 PM
+GET /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:50:58 PM
+POST /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:50:58 PM
+POST /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:13 PM
+GET /bad
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:13 PM
+GET /
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:13 PM
+GET /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:13 PM
+GET /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:13 PM
+POST /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:13 PM
+POST /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:20 PM
+GET /
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:20 PM
+GET /style/toDo.css
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:23 PM
+GET /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:23 PM
+GET /style/toDo.css
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:24 PM
+POST /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:24 PM
+GET /homePage.html
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:24 PM
+GET /style/toDo.css
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:27 PM
+GET /logout
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:27 PM
+GET /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:27 PM
+GET /style/toDo.css
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:29 PM
+GET /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:29 PM
+GET /style/toDo.css
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:34 PM
+GET /
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:51:34 PM
+GET /style/toDo.css
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:35 PM
+GET /bad
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:35 PM
+GET /
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:35 PM
+GET /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:35 PM
+GET /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:35 PM
+POST /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:35 PM
+POST /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:40 PM
+GET /
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:40 PM
+GET /style/toDo.css
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:43 PM
+GET /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:43 PM
+GET /style/toDo.css
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:45 PM
+POST /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:45 PM
+GET /homePage.html
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:45 PM
+GET /style/toDo.css
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:47 PM
+GET /addToDo.html
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:47 PM
+GET /style/toDo.css
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:51 PM
+GET /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:56 PM
+GET /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:53:56 PM
+GET /style/toDo.css
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:54:52 PM
+GET /bad
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:54:52 PM
+GET /
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:54:52 PM
+GET /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:54:52 PM
+GET /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:54:52 PM
+POST /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]
+------------------------------
+Sun Jan 14 2018 5:54:52 PM
+POST /login
+HEADERS=> [object Undefined]
+COOKIES=> [object Undefined]
+BODY=> [object Undefined]

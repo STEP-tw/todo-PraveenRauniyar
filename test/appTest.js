@@ -1,9 +1,9 @@
 let chai = require('chai');
 let assert = chai.assert;
-let request = require('../requestSimulator.js');
+let request = require('./requestSimulator.js');
 process.env.COMMENT_STORE = "./testStore.json";
-let app = require('../server.js').app;
-let th = require('../testHelper.js');
+let app = require('../app.js').app;
+let th = require('./testHelper.js');
 
 describe('app',()=>{
   describe('GET /bad',()=>{
