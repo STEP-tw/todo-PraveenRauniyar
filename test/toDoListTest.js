@@ -13,7 +13,7 @@ describe("Add to do list test", function() {
     addToDo.removeToDoItem(1);
     assert.deepEqual(addToDo.getToDoItem(),{2:"Lunch"});
   });
-  it("It should return title which user has given", function() {
+  it("It should add given to do item", function() {
     let expected = {2:"Lunch",3 : "dinner"};
     assert.deepEqual(addToDo.addToDoItem(3,"dinner"),expected);
   });

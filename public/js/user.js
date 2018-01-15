@@ -1,13 +1,13 @@
-let addToDo = require("./addToDoList.js")
+let AddToDo = require("./addToDoList.js")
 class User {
-  constructor(usersName,userAllToDo){
-    this.usersName = usersId;
+  constructor(usersId){
+    this.userId = usersId;
     this.userAllToDo = {};
   }
-  removeToDoList : function () {
-    delete this.userAllToDo[title];
-  },
-  AddToDo : function (title,discription,text) {
+  removeToDoList (toDoTitle) {
+    delete this.userAllToDo[toDoTitle];
+  }
+  AddToDo (title,discription,text) {
     let toDo = new ToDo(title,discription,text);
     this.userAllToDo[toDo.title] = toDo;
   };

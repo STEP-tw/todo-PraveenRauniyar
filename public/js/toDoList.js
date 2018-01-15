@@ -1,24 +1,28 @@
 class AddToDo {
-  constructor (title, discription, toDoText) {
+  constructor (title, description, toDoText) {
     this.title = title;
-    this.discription = discription;
+    this.description = description;
     this.Id = new Date()
     this.toDoItem = toDoText;
   }
-  getTitle () {
+   getTitle () {
     return this.title;
   }
-  getToDoItem(){
+   getToDoItem(){
     return this.toDoItem;
   }
-  removeToDoItem (toDoItem) {
-    delete this.toDoItem[toDoItem]
+  removeToDoItem (toDoItemId) {
+    delete this.toDoItem[toDoItemId]
   }
-  addToDoItem (toDoItemNumber,toDoText) {
-    this.toDoItem[toDoItemNumber] = toDoText;
-    console.log(this.toDoItem);
+  addToDoItem (toDoItemId,toDoText) {
+    this.toDoItem[toDoItemId] = toDoText;
     return this.toDoItem;
   }
+  editToDoItem (toDoItemId,newTodoText) {
+    this.toDoItem[toDoItemId] = newTodoText;
+  }
+
+
 };
 
 module.exports = AddToDo;
