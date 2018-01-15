@@ -1,8 +1,9 @@
+let ToDo = require("./toDoItem.js")
 class AddToDo {
   constructor (title, description, toDoText) {
+    this.counter = 0;
     this.title = title;
     this.description = description;
-    this.Id = new Date()
     this.toDoItem = toDoText;
   }
    getTitle () {
@@ -14,12 +15,14 @@ class AddToDo {
   removeToDoItem (toDoItemId) {
     delete this.toDoItem[toDoItemId]
   }
-  addToDoItem (toDoItemId,toDoText) {
-    this.toDoItem[toDoItemId] = toDoText;
+  addToDoItem (toDoText) {
+    let toDoItemId = this.counter++;
+    let toDo = new ToDo();
+    this.toDoItem.toDo[toDoItemId] = toDoText;
     return this.toDoItem;
   }
-  editToDoItem (toDoItemId,newTodoText) {
-    this.toDoItem[toDoItemId] = newTodoText;
+  editToDoItem (toDoTitle,newTodoText) {
+    this.toDoItem[toDoTitle] = newTodoText;
   }
 
 
