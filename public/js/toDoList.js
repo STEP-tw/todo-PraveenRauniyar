@@ -1,5 +1,5 @@
-let ToDo = require("./toDoItem.js")
-class AddToDo {
+let ToDoItem = require("./toDoItem.js")
+class ToDoList {
   constructor (title, description, toDoText) {
     this.counter = 0;
     this.title = title;
@@ -17,7 +17,8 @@ class AddToDo {
   }
   addToDoItem (toDoText) {
     let toDoItemId = this.counter++;
-    let toDo = new ToDo();
+    let toDo = new ToDoItem(todoText);
+    console.log(typeof toDo);
     this.toDoItem.toDo[toDoItemId] = toDoText;
     return this.toDoItem;
   }
@@ -28,4 +29,4 @@ class AddToDo {
 
 };
 
-module.exports = AddToDo;
+module.exports = ToDoList;

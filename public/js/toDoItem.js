@@ -1,4 +1,4 @@
-class ToDo{
+class ToDoItem{
   constructor(toDoText){
     this.toDoItemId = "";
     this.status = false;
@@ -12,4 +12,4 @@ class ToDo{
 
 }
 
-module.exports = ToDo;
+module.exports = ToDoItem;
