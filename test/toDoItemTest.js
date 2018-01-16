@@ -4,7 +4,9 @@ process.env.COMMENT_STORE = "./testStore.json";
 let ToDoItem = require('../public/js/toDoItem.js');
 
 describe("To Do Item", function() {
-  let toDoItem = new ToDoItem ("Breakfast");
+  beforeEach(() => {
+    toDoItem = new ToDoItem("Breakfast");
+  });
   it("By default status should be false", function() {
     assert.isNotOk(toDoItem.status);
   });

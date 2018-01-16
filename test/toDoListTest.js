@@ -15,7 +15,7 @@ describe("Add to do list test", function() {
   });
   it("It should remove specific to do Item", function() {
     toDoList.removeToDoItem(1);
-    assert.deepEqual(toDoList.getToDoItem(),{});
+    assert.deepEqual(toDoList.getAllToDoItems(),{});
   });
   it("It should edit to do Item", function() {
     toDoList.addToDoItem("dinner");

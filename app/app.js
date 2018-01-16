@@ -1,11 +1,28 @@
 let fs = require('fs');
-const WebApp = require('../webapp');
-const setContentType = require("./serverUtils.js").setContentType;
-const loadUser = require("./serverUtils.js").loadUser;
-const logRequest = require("./serverUtils.js").logRequest;
+const WebApp = require('./webapp');
+const setContentType = require("./content-Type.js").setContentType;
 const registered_users = require("./registeredUser.js").registered_users;
-
+const timeStamp = require('./time.js').timeStamp;
 let toString = o => JSON.stringify(o, null, 2);
+
+let logRequest = (req, res) => {
+  let text = ['------------------------------',
+    `${timeStamp()}`,
+    `${req.method} ${req.url}`,
+    `HEADERS=> ${toString(req.headers)}`,
+    `COOKIES=> ${toString(req.cookies)}`,
+    `BODY=> ${toString(req.body)}`, ''
+  ].join('\n');
+  fs.appendFile('request.log', text, () => {});
+};
+
+let loadUser = (req, res) => {
+  let sessionid = req.cookies.sessionid;
+  let user = registered_users.find(u => u.sessionid == sessionid);
+  if (sessionid && user) {
+    req.user = user;
+  }
+};
 
 let redirectLoggedInUserToHome = (req, res) => {
   if (req.urlIsOneOf(['/login']) && req.user) res.redirect('homePage.html');
