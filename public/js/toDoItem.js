@@ -1,13 +1,13 @@
 class ToDoItem{
   constructor(toDoText){
-    this.toDoItemId = "";
+    this.toDoItem = toDoText;
     this.status = false;
   }
   markAsDone (){
-    this.status = true;
+    return this.status = true;
   }
   markAsNotDone (){
-    this.status = false;
+    return this.status = false;
   }
 
 }

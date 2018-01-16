@@ -1,7 +1,7 @@
 let ToDoItem = require("./toDoItem.js")
 class ToDoList {
   constructor (title, description, toDoText) {
-    this.counter = 0;
+    this.counter = 1;
     this.title = title;
     this.description = description;
     this.toDoItem = toDoText;
@@ -17,16 +17,13 @@ class ToDoList {
   }
   addToDoItem (toDoText) {
     let toDoItemId = this.counter++;
-    let toDo = new ToDoItem(todoText);
-    console.log(typeof toDo);
-    this.toDoItem.toDo[toDoItemId] = toDoText;
+    let toDo = new ToDoItem(toDoText);
+    this.toDoItem[toDoItemId] = toDo;
     return this.toDoItem;
   }
   editToDoItem (toDoTitle,newTodoText) {
     this.toDoItem[toDoTitle] = newTodoText;
   }
-
-
 };
 
 module.exports = ToDoList;

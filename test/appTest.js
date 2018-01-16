@@ -14,9 +14,8 @@ describe('app',()=>{
       })
     })
   })
-
   describe('GET /welcomePage.html',()=>{
-    it('gives the welcome page',done=>{
+    it('should display welcome page',done=>{
       request(app,{method:'GET',url:'/'},res=>{
         th.status_is_ok(res);
         th.body_contains(res,'Welcome to the To Do App');
@@ -64,14 +63,14 @@ describe('app',()=>{
   })
 
   describe('POST /login',()=>{
-    it('redirects to guestBook for valid user',done=>{
+    it('redirects to homePage for valid user',done=>{
       request(app,{method:'POST',url:'/login',body:'userName=Praveen'},res=>{
         th.should_be_redirected_to(res,'/homePage.html');
         th.should_not_have_cookie(res,'message');
         done();
       })
     })
-    it('redirects to login.html with message for invalid user',done=>{
+    it('redirects to login  with message for invalid user',done=>{
       request(app,{method:'POST',url:'/login',body:'userName=Amit'},res=>{
         th.should_be_redirected_to(res,'/login');
         th.should_have_expiring_cookie(res,'message','login failed');
@@ -83,7 +82,7 @@ describe('app',()=>{
   describe.skip('POST /submitForm',()=>{
     it('serves the javascript source',done=>{
       request(app,{method:'POST',url:'/submitForm',body:'name=Foo&comment=Faa'},res=>{
-        th.should_be_redirected_to(res,'/guestBook');
+        th.should_be_redirected_to(res,'/homePage.html');
         done();
       })
     })
