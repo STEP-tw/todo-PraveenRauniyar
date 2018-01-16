@@ -1,16 +1,36 @@
-let AddToList = require("./toDoList.js")
+let ToDoList = require("./toDoList.js");
 class User {
   constructor(usersName){
     this.userName = usersName;
-    this.userAllToDo = {};
-  }
-  removeToDoList (toDoTitle) {
-    delete this.userAllToDo[toDoTitle];
-  }
-  addToDoList (title,discription,text) {
-    let toDo = new ToDoList(title,discription,text);
-    this.userAllToDo  = toDo;
+    this.allToDo = {};
   };
-}
+  getAllToDoLists (){
+    return Object.keys(this.allToDo);
+  };
+  removeToDoList (toDoTitle) {
+    delete this.allToDo[toDoTitle];
+  };
+  addToDoList (title,description) {
+    let toDoList = new ToDoList(title,description);
+    this.allToDo[title]  = toDoList;
+  };
+  getToDoList (title){
+    return this.allToDo[title];
+  };
+  getToDoItem(title){
+    return this.getToDoList(title).getToDoItem();
+  };
+  addToDoItem (title,toDoText) {
+    this.getToDoList(title).addToDoItem(toDoText);
+  };
+  removeToDoItem (title,toDoItemId) {
+    this.getToDoList(title).removeToDoItem(toDoItemId);
+  };
+  editToDoItem (title,toDoItemId,newTodoText) {
+    this.getToDoList(title).editToDoItem(toDoItemId,newTodoText)
+  };
+};
+
+
 
 module.exports = User;

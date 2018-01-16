@@ -9,6 +9,9 @@ class ToDoItem{
   markAsNotDone (){
     return this.status = false;
   }
+  isDone (){
+    return this.status;
+  }
 
 }
 

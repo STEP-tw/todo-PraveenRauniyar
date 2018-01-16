@@ -4,7 +4,7 @@ process.env.COMMENT_STORE = "./testStore.json";
 let ToDoList = require('../public/js/toDoList.js');
 
 describe("Add to do list test", function() {
-  let toDoList = new ToDoList ('DailyRoutine',"TimeTable",{})
+  let toDoList = new ToDoList ('DailyRoutine',"TimeTable");
   it("It should return title which user has given", function() {
     assert.equal(toDoList.getTitle(),"DailyRoutine");
   });
@@ -16,6 +16,10 @@ describe("Add to do list test", function() {
   it("It should remove specific to do Item", function() {
     toDoList.removeToDoItem(1);
     assert.deepEqual(toDoList.getToDoItem(),{});
-    toDoList.addToDoItem("dinner")
+  });
+  it("It should edit to do Item", function() {
+    toDoList.addToDoItem("dinner");
+    let expected = { '2': { toDoItem: 'Breakfast', status: false }}
+    assert.deepEqual(toDoList.editToDoItem(2,"Breakfast"),expected);
   });
 });

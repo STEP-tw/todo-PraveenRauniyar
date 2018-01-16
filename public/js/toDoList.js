@@ -1,28 +1,31 @@
 let ToDoItem = require("./toDoItem.js")
 class ToDoList {
-  constructor (title, description, toDoText) {
-    this.counter = 1;
+  constructor (title, description) {
+    this.noOfItems = 0;
     this.title = title;
     this.description = description;
-    this.toDoItem = toDoText;
+    this.toDoItems = {};
   }
    getTitle () {
     return this.title;
   }
    getToDoItem(){
-    return this.toDoItem;
+    return this.toDoItems;
   }
   removeToDoItem (toDoItemId) {
-    delete this.toDoItem[toDoItemId]
+    delete this.toDoItems[toDoItemId]
   }
   addToDoItem (toDoText) {
-    let toDoItemId = this.counter++;
     let toDo = new ToDoItem(toDoText);
-    this.toDoItem[toDoItemId] = toDo;
-    return this.toDoItem;
+    let toDoItemId = ++this.noOfItems;
+    this.toDoItems[toDoItemId] = toDo;
+    return this.toDoItems;
   }
-  editToDoItem (toDoTitle,newTodoText) {
-    this.toDoItem[toDoTitle] = newTodoText;
+  editToDoItem (toDoItemId,newTodoText) {
+    if(this.toDoItems[toDoItemId]){
+      this.toDoItems[toDoItemId] = new ToDoItem(newTodoText);
+    }
+    return this.toDoItems;
   }
 };
 
