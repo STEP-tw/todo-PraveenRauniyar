@@ -70,8 +70,10 @@ describe('app', () => {
         th.should_be_redirected_to(res, '/homePage.html');
         th.should_not_have_cookie(res, 'message');
         done();
-      });
+      }
+    );
     });
+    
     it('redirects to login  with message for invalid user', done => {
       request(app, {
         method: 'POST',
@@ -85,3 +87,5 @@ describe('app', () => {
     });
   });
 });
+
+

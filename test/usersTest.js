@@ -1,25 +1,26 @@
 let chai = require('chai');
 let assert = chai.assert;
-process.env.COMMENT_STORE = "./testStore.json";
+
 let User = require('../public/js/user.js');
 
-describe("user", function() {
+describe("user", function () {
   beforeEach(() => {
     user = new User("Praveen");
   });
-  describe("getAllToDoTitles()", function() {
-    it("It should return initially empty list of title ", function() {
+
+  describe("getAllToDoTitles()", function () {
+    it("It should return initially empty list of title ", function () {
       assert.deepEqual(user.getAllToDoTitle(), []);
     });
-    it("It should return list of all toDo titles after adding toDos ", function() {
+    it("It should return list of all toDo titles after adding toDos ", function () {
       user.addToDoList("App", "Create App")
       user.addToDoList("Cricket Tournament", "Arrangement of cricket tournament")
       assert.deepEqual(user.getAllToDoTitle(), ["App", "Cricket Tournament"]);
     });
   });
 
-  describe("addToDoList()", function() {
-    it("It should add a new toDoList for the user", function() {
+  describe("addToDoList()", function () {
+    it("It should add a new toDoList for the user", function () {
       user.addToDoList("App", "createApp");
       let expected = {
         "App": {
@@ -31,23 +32,23 @@ describe("user", function() {
       }
       assert.deepEqual(user.getAllToDo(), expected);
     });
-    it("It should add multiple ToDoLists for the user ", function() {
+    it("It should add multiple ToDoLists for the user ", function () {
       user.addToDoList("App", "Create App")
       user.addToDoList("Cricket Tournament", "Arrangement of cricket tournament")
       assert.deepEqual(user.getAllToDoTitle(), ["App", "Cricket Tournament"]);
     });
   });
 
-  describe("removeToDoList(title)", function() {
-    it("It should remove given toDoList from user toDoLists", function() {
+  describe("removeToDoList(title)", function () {
+    it("It should remove given toDoList from user toDoLists", function () {
       user.addToDoList("App", "createApp");
       user.removeToDoList("App")
       assert.deepEqual(user.getAllToDo(), {});
     });
   });
 
-  describe("getSpecificToDo(title)", function() {
-    it("It should return specific toDoList of user", function() {
+  describe("getSpecificToDo(title)", function () {
+    it("It should return specific toDoList of user", function () {
       user.addToDoList("App", "createApp");
       user.addToDoList("Play", "cricket");
       let expected = {
@@ -60,12 +61,12 @@ describe("user", function() {
     });
   });
 
-  describe("addToDoItem(title,toDoText)", function() {
+  describe("addToDoItem(title,toDoText)", function () {
     beforeEach(() => {
       user.addToDoList("App", "createApp");
       user.addToDoList("Cricket", "play");
     });
-    it("It should add a toDoItem in given to do list of user", function() {
+    it("It should add a toDoItem in given to do list of user", function () {
       user.addToDoItem("Cricket", "Play at 10am");
       let expected = {
         noOfItems: 1,
@@ -83,8 +84,8 @@ describe("user", function() {
     });
   });
 
-  describe("removeToDoItem(title,toDoId)", function() {
-    it("It should remove toDoItem from given toDoList of user", function() {
+  describe("removeToDoItem(title,toDoId)", function () {
+    it("It should remove toDoItem from given toDoList of user", function () {
       user.addToDoList("Cricket", "play");
       user.addToDoItem("Cricket", "Play at 10am");
       user.addToDoItem("Cricket", "rest at 11am");
@@ -104,8 +105,8 @@ describe("user", function() {
     });
   });
 
-  describe("getSpecificToDoItem(title,toDoItemId)", function() {
-    it("It should give specific toDoItem from specific toDoList of user ", function() {
+  describe("getSpecificToDoItem(title,toDoItemId)", function () {
+    it("It should give specific toDoItem from specific toDoList of user ", function () {
       user.addToDoList("Cricket", "play");
       user.addToDoItem("Cricket", "Play at 10am");
       user.addToDoItem("Cricket", "rest at 11am");
