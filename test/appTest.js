@@ -5,60 +5,83 @@ process.env.COMMENT_STORE = "./testStore.json";
 let app = require('../app/app.js').app;
 let th = require('./testHelper.js');
 
-describe('app',()=>{
-  describe('GET /bad',()=>{
-    it('responds with 404',done=>{
-      request(app,{method:'GET',url:'/bad'},(res)=>{
-        assert.equal(res.statusCode,404);
+describe('app', () => {
+  describe('GET /bad', () => {
+    it('responds with 404', done => {
+      request(app, {
+        method: 'GET',
+        url: '/bad'
+      }, (res) => {
+        assert.equal(res.statusCode, 404);
         done();
-      })
-    })
-  })
-  describe('GET /welcomePage.html',()=>{
-    it('should display welcome page',done=>{
-      request(app,{method:'GET',url:'/'},res=>{
-        th.status_is_ok(res);
-        th.body_contains(res,'Welcome to the To Do App');
-        done();
-      })
-    })
-  })
-  
-  describe('GET /login.html',()=>{
-    it('serves the login page',done=>{
-      request(app,{method:'GET',url:'/login'},res=>{
-        th.status_is_ok(res);
-        th.body_contains(res,'userName');
-        th.body_does_not_contain(res,'logIn Failed');
-        th.should_not_have_cookie(res,'message');
-        done();
-      })
-    })
-    it('serves the login page with message for a failed login',done=>{
-      request(app,{method:'GET',url:'/login',headers:{'cookie':'message=login failed'}},res=>{
-        th.status_is_ok(res);
-        th.body_contains(res,'userName');
-        th.should_not_have_cookie(res,'message');
-        done();
-      })
-    })
-  })
+      });
+    });
+  });
 
-  describe('POST /login',()=>{
-    it('redirects to homePage for valid user',done=>{
-      request(app,{method:'POST',url:'/login',body:'userName=Praveen'},res=>{
-        th.should_be_redirected_to(res,'/homePage.html');
-        th.should_not_have_cookie(res,'message');
+  describe('GET /welcomePage.html', () => {
+    it('should display welcome page', done => {
+      request(app, {
+        method: 'GET',
+        url: '/'
+      }, res => {
+        th.status_is_ok(res);
+        th.body_contains(res, 'Welcome to the To Do App');
         done();
-      })
-    })
-    it('redirects to login  with message for invalid user',done=>{
-      request(app,{method:'POST',url:'/login',body:'userName=Amit'},res=>{
-        th.should_be_redirected_to(res,'/login');
-        th.should_have_expiring_cookie(res,'message','login failed');
-        done();
-      })
-    })
-  })
+      });
+    });
+  });
 
-})
+  describe('GET /login.html', () => {
+    it('serves the login page', done => {
+      request(app, {
+        method: 'GET',
+        url: '/login'
+      }, res => {
+        th.status_is_ok(res);
+        th.body_contains(res, 'userName');
+        th.body_does_not_contain(res, 'logIn Failed');
+        th.should_not_have_cookie(res, 'message');
+        done();
+      });
+    });
+    it('serves the login page with message for a failed login', done => {
+      request(app, {
+        method: 'GET',
+        url: '/login',
+        headers: {
+          'cookie': 'message=login failed'
+        }
+      }, res => {
+        th.status_is_ok(res);
+        th.body_contains(res, 'userName');
+        th.should_not_have_cookie(res, 'message');
+        done();
+      });
+    });
+  });
+
+  describe('POST /login', () => {
+    it('redirects to homePage for valid user', done => {
+      request(app, {
+        method: 'POST',
+        url: '/login',
+        body: 'userName=Praveen'
+      }, res => {
+        th.should_be_redirected_to(res, '/homePage.html');
+        th.should_not_have_cookie(res, 'message');
+        done();
+      });
+    });
+    it('redirects to login  with message for invalid user', done => {
+      request(app, {
+        method: 'POST',
+        url: '/login',
+        body: 'userName=Amit'
+      }, res => {
+        th.should_be_redirected_to(res, '/login');
+        th.should_have_expiring_cookie(res, 'message', 'login failed');
+        done();
+      });
+    });
+  });
+});

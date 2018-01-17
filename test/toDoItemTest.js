@@ -7,7 +7,7 @@ describe("To Do Item", function() {
   beforeEach(() => {
     toDoItem = new ToDoItem("Breakfast");
   });
-  describe("markAsDone()", function(){
+  describe("markAsDone()", function() {
     it("By default status should be false", function() {
       assert.isNotOk(toDoItem.status);
     });
@@ -16,13 +16,15 @@ describe("To Do Item", function() {
       assert.isOk(toDoItem.status);
     });
   });
-  describe("markAsNotDone()", function(){
+
+  describe("markAsNotDone()", function() {
     it("status should be false after mark as not Done", function() {
       toDoItem.markAsNotDone();
       assert.isNotOk(toDoItem.status);
     });
   });
-  describe("isDone()", function(){
+
+  describe("isDone()", function() {
     it("It should be true after mark as done", function() {
       toDoItem.markAsDone();
       assert.isOk(toDoItem.isDone());
@@ -37,5 +39,4 @@ describe("To Do Item", function() {
       assert.isNotOk(toDoItem.isDone());
     });
   });
-
 });

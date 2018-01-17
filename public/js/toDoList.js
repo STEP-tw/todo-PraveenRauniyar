@@ -1,4 +1,4 @@
-let ToDoItem = require("./toDoItem.js")
+let ToDoItem = require("./toDoItem.js");
 class ToDoList {
   constructor(title, description) {
     this.noOfItems = 0;
@@ -27,15 +27,12 @@ class ToDoList {
   editToDoItem(toDoItemId, newTodoText) {
     if (this.toDoItems[toDoItemId]) {
       this.toDoItems[toDoItemId] = new ToDoItem(newTodoText);
-    }
+    };
     return this.toDoItems;
   };
   getSpecificToDoItem(toDoItemId) {
     return this.toDoItems[toDoItemId];
-  }
+  };
 };
 
-let toDoList = new ToDoList("cri","play");
-toDoList.addToDoItem("mor");
-console.log(toDoList.getAllToDoItems(1));
 module.exports = ToDoList;

@@ -57,7 +57,7 @@ const use = function(handler) {
   this._preprocess.push(handler);
 };
 
-const postuse = function(handler) {
+const postUse = function(handler) {
   this._postprocess.push(handler);
 }
 
@@ -101,7 +101,7 @@ let create = () => {
   rh.get = get;
   rh.post = post;
   rh.use = use;
-  rh.postuse = postuse;
+  rh.postUse = postUse;
   return rh;
 };
 exports.create = create;

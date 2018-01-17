@@ -61,13 +61,4 @@ class User {
   };
 };
 
-let user = new User("Praveen");
-user.addToDoList("cricket", "shedule");
-
-user.addToDoItem("cricket", "firstMatch");
-// console.log(user.getToDoItems("cricket")[0].toDoItem);
-// console.log(user.getToDoItems("cricket"));
-
-
-
 module.exports = User;

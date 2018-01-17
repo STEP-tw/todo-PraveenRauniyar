@@ -49,6 +49,7 @@ describe("user", function() {
       assert.deepEqual(user.getAllToDo(), {});
     });
   });
+
   describe("getSpecificToDo(title) should add to do lists", function() {
     it("It should give to do of given toDoTitle", function() {
       user.addToDoList("App", "createApp");
@@ -62,6 +63,7 @@ describe("user", function() {
       assert.deepEqual(user.getSpecificToDo("Play"), expected);
     });
   });
+
   describe("addToDoItem(title,toDoText) should add to do Item in given toDo", function() {
     beforeEach(() => {
       user.addToDoList("App", "createApp");
@@ -110,10 +112,11 @@ describe("user", function() {
       user.addToDoList("Cricket", "play");
       user.addToDoItem("Cricket", "Play at 10am");
       user.addToDoItem("Cricket", "rest at 11am");
-      let expected = { toDoItem: 'Play at 10am', status: false }
-      assert.deepEqual(user.getSpecificToDoItem("Cricket",1), expected);
+      let expected = {
+        toDoItem: 'Play at 10am',
+        status: false
+      }
+      assert.deepEqual(user.getSpecificToDoItem("Cricket", 1), expected);
     });
   });
-
-
 });
