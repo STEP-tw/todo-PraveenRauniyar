@@ -59,6 +59,9 @@ class User {
   isDone(title, toDoItemId) {
     this.getSpecificToDoItem(title, toDoItemId).isDone();
   };
+  getToDoItem (title, toDoItemId) {
+    return this.getSpecificToDoItem(title, toDoItemId).getToDoItem();
+  };
 };
 
 module.exports = User;

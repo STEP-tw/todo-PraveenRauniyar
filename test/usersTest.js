@@ -7,19 +7,19 @@ describe("user", function() {
   beforeEach(() => {
     user = new User("Praveen");
   });
-  describe("getAllToDoTitles() should give all to do lists", function() {
-    it("It should return empty list in starting", function() {
+  describe("getAllToDoTitles()", function() {
+    it("It should return initially empty list of title ", function() {
       assert.deepEqual(user.getAllToDoTitle(), []);
     });
-    it("It should return list of ToDo", function() {
+    it("It should return list of all toDo titles after adding toDos ", function() {
       user.addToDoList("App", "Create App")
       user.addToDoList("Cricket Tournament", "Arrangement of cricket tournament")
       assert.deepEqual(user.getAllToDoTitle(), ["App", "Cricket Tournament"]);
     });
   });
 
-  describe("addToDoList() should add to do lists", function() {
-    it("It should add to do ", function() {
+  describe("addToDoList()", function() {
+    it("It should add a new toDoList for the user", function() {
       user.addToDoList("App", "createApp");
       let expected = {
         "App": {
@@ -31,27 +31,23 @@ describe("user", function() {
       }
       assert.deepEqual(user.getAllToDo(), expected);
     });
-    it("It should add multiple ToDo list", function() {
+    it("It should add multiple ToDoLists for the user ", function() {
       user.addToDoList("App", "Create App")
       user.addToDoList("Cricket Tournament", "Arrangement of cricket tournament")
       assert.deepEqual(user.getAllToDoTitle(), ["App", "Cricket Tournament"]);
     });
   });
 
-  describe("removeToDoList(title) should remove to do lists", function() {
-    it("It should remove given to do ", function() {
+  describe("removeToDoList(title)", function() {
+    it("It should remove given toDoList from user toDoLists", function() {
       user.addToDoList("App", "createApp");
       user.removeToDoList("App")
       assert.deepEqual(user.getAllToDo(), {});
     });
-    it("It should remove toDoList when it available either nothing to do", function() {
-      user.removeToDoList("Cricket");
-      assert.deepEqual(user.getAllToDo(), {});
-    });
   });
 
-  describe("getSpecificToDo(title) should add to do lists", function() {
-    it("It should give to do of given toDoTitle", function() {
+  describe("getSpecificToDo(title)", function() {
+    it("It should return specific toDoList of user", function() {
       user.addToDoList("App", "createApp");
       user.addToDoList("Play", "cricket");
       let expected = {
@@ -64,12 +60,12 @@ describe("user", function() {
     });
   });
 
-  describe("addToDoItem(title,toDoText) should add to do Item in given toDo", function() {
+  describe("addToDoItem(title,toDoText)", function() {
     beforeEach(() => {
       user.addToDoList("App", "createApp");
       user.addToDoList("Cricket", "play");
     });
-    it("It should add toDoItem in given toDo", function() {
+    it("It should add a toDoItem in given to do list of user", function() {
       user.addToDoItem("Cricket", "Play at 10am");
       let expected = {
         noOfItems: 1,
@@ -82,12 +78,13 @@ describe("user", function() {
           }
         }
       }
+      user.addToDoItem("App", "create App");
       assert.deepEqual(user.getSpecificToDo("Cricket"), expected);
     });
   });
 
-  describe("removeToDoItem(title,toDoId) should add to do Item in given toDo", function() {
-    it("It should remove toDoItem in given toDo", function() {
+  describe("removeToDoItem(title,toDoId)", function() {
+    it("It should remove toDoItem from given toDoList of user", function() {
       user.addToDoList("Cricket", "play");
       user.addToDoItem("Cricket", "Play at 10am");
       user.addToDoItem("Cricket", "rest at 11am");
@@ -107,8 +104,8 @@ describe("user", function() {
     });
   });
 
-  describe("getSpecificToDoItem(title,toDoItemId) should remove to do lists", function() {
-    it("It should remove given to do ", function() {
+  describe("getSpecificToDoItem(title,toDoItemId)", function() {
+    it("It should give specific toDoItem from specific toDoList of user ", function() {
       user.addToDoList("Cricket", "play");
       user.addToDoItem("Cricket", "Play at 10am");
       user.addToDoItem("Cricket", "rest at 11am");

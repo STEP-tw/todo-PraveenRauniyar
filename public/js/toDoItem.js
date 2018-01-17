@@ -12,6 +12,9 @@ class ToDoItem {
   isDone() {
     return this.status;
   };
+  getToDoItem() {
+    return this.toDoItem;
+  }
 };
 
 module.exports = ToDoItem;
