@@ -9,7 +9,7 @@ class User {
     return Object.keys(this.allToDo);
   };
 
-  getAllToDo(){
+  getAllToDo() {
     return this.allToDo;
   }
 
@@ -19,7 +19,7 @@ class User {
   };
 
   removeToDoList(toDoTitle) {
-    if(this.allToDo[toDoTitle]){
+    if (this.allToDo[toDoTitle]) {
       delete this.allToDo[toDoTitle];
     };
   };
@@ -28,7 +28,7 @@ class User {
     return this.allToDo[title];
   };
 
-  getToDoItems(title) {
+  getAllToDoItems(title) {
     return this.getSpecificToDo(title).getAllToDoItems();
   };
 
@@ -43,6 +43,22 @@ class User {
   editToDoItem(title, toDoItemId, newTodoText) {
     this.getSpecificToDo(title).editToDoItem(toDoItemId, newTodoText);
   };
+
+  getSpecificToDoItem(title, toDoItemId) {
+    return this.getSpecificToDo(title).getSpecificToDoItem(toDoItemId);
+  };
+
+  markAsDone(title, toDoItemId) {
+    this.getSpecificToDoItem(title, toDoItemId).markAsDone();
+  };
+
+  markAsNotDone(title, toDoItemId) {
+    this.getSpecificToDoItem(title, toDoItemId).markAsNotDone();
+  };
+
+  isDone(title, toDoItemId) {
+    this.getSpecificToDoItem(title, toDoItemId).isDone();
+  };
 };
 
 let user = new User("Praveen");
@@ -51,7 +67,7 @@ user.addToDoList("cricket", "shedule");
 user.addToDoItem("cricket", "firstMatch");
 // console.log(user.getToDoItems("cricket")[0].toDoItem);
 // console.log(user.getToDoItems("cricket"));
-console.log(user.getSpecificToDo("cricket"));
+
 
 
 module.exports = User;

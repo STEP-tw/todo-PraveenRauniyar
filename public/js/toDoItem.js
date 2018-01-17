@@ -1,15 +1,15 @@
-class ToDoItem{
-  constructor(toDoText){
+class ToDoItem {
+  constructor(toDoText) {
     this.toDoItem = toDoText;
     this.status = false;
   }
-  markAsDone (){
+  markAsDone() {
     return this.status = true;
   }
-  markAsNotDone (){
+  markAsNotDone() {
     return this.status = false;
   }
-  isDone (){
+  isDone() {
     return this.status;
   }
 

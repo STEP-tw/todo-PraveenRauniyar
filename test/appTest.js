@@ -23,25 +23,7 @@ describe('app',()=>{
       })
     })
   })
-  describe.skip('GET /images/freshorigins.jpg',()=>{
-    it('serves the image',done=>{
-      request(app,{method:'GET',url:'/images/freshorigins.jpg'},res=>{
-        th.status_is_ok(res);
-        th.content_type_is(res,'image/jpg');
-        done();
-      })
-    })
-  })
-  describe.skip('GET /scripts/flowerCatalog.js',()=>{
-    it('serves the javascript source',done=>{
-      request(app,{method:'GET',url:'/scripts/flowerCatalog.js'},res=>{
-        th.status_is_ok(res);
-        th.content_type_is(res,'text/javascript');
-        th.body_contains(res,'hidePot');
-        done();
-      })
-    })
-  })
+  
   describe('GET /login.html',()=>{
     it('serves the login page',done=>{
       request(app,{method:'GET',url:'/login'},res=>{
@@ -79,12 +61,4 @@ describe('app',()=>{
     })
   })
 
-  describe.skip('POST /submitForm',()=>{
-    it('serves the javascript source',done=>{
-      request(app,{method:'POST',url:'/submitForm',body:'name=Foo&comment=Faa'},res=>{
-        th.should_be_redirected_to(res,'/homePage.html');
-        done();
-      })
-    })
-  })
 })
