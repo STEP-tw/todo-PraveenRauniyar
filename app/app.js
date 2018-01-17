@@ -40,7 +40,7 @@ const getLoginPage = function(req, res) {
   res.write(loginPageContent);
 };
 
-const serveLogin = function (req,res) {
+const serveLogin = function(req, res) {
   if (req.user) {
     res.redirect('/homePage.html');
     return;
@@ -63,7 +63,7 @@ const postLoginPage = function(req, res) {
   res.redirect('/homePage.html');
 };
 
-const serveLogout = function (req, res) {
+const serveLogout = function(req, res) {
   res.setHeader('Set-Cookie', [`loginFailed=false,Expires=${new Date(1).toUTCString()}`, `sessionid=0,Expires=${new Date(1).toUTCString()}`]);
   delete req.user.sessionid;
   res.redirect('/login');
@@ -82,7 +82,7 @@ const responseError = function(res) {
   res.end();
 };
 
-const serverStaticFiles = function (req, res) {
+const serverStaticFiles = function(req, res) {
   let filePath = getFilePath(req);
   if (fs.existsSync(filePath)) {
     let fileContents = fs.readFileSync(filePath)
@@ -94,13 +94,20 @@ const serverStaticFiles = function (req, res) {
   };
 };
 
+// const postToDoPage = function(req, res) {
+//   console.log(req.body);
+//   res.write("message got");
+//   res.end();
+// };
+
 let app = WebApp.create();
 app.use(logRequest);
 app.use(loadUser);
 app.use(redirectLoggedInUserToHome);
 app.use(redirectLoggedOutUserToLogin);
-app.get('/login',serveLogin)
-app.post('/login', postLoginPage);
+app.get('/login', serveLogin)
+// app.post('/login', postLoginPage);
+app.post('/toDo.html', postToDoPage);
 app.get('/logout', serveLogout)
 app.postUse(serverStaticFiles)
 
