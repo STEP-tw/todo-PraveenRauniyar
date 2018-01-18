@@ -1,3 +1,4 @@
+const queryString = require('querystring');
 const toKeyValue = kv => {
   let parts = kv.split('=');
   return {
@@ -9,10 +10,6 @@ const toKeyValue = kv => {
 const accumulate = (o, kv) => {
   o[kv.key] = kv.value;
   return o;
-};
-
-const parseBody = function(text) {
-  return text && text.split('&').map(toKeyValue).reduce(accumulate, {}) || {};
 };
 
 let redirect = function(path) {
@@ -71,7 +68,7 @@ const parseCookiesAndBindRes = function(req, res) {
   req.cookies = parseCookies(req.headers.cookie || '');
 };
 
-const runProcess = function(processors,req, res) {
+const runProcess = function(processors, req, res) {
   processors.forEach(middleware => {
     if (res.finished) return;
     middleware(req, res);
@@ -84,12 +81,12 @@ const main = function(req, res) {
   let content = "";
   req.on('data', data => content += data.toString());
   req.on('end', () => {
-      req.body = parseBody(content);
-      runProcess(this._preprocess,req,res)
-      if (res.finished) return;
-      invoke.call(this, req, res);
-      if (res.finished) return;
-      runProcess(this._postprocess, req, res);
+    req.body = queryString.parse(content);
+    runProcess(this._preprocess, req, res)
+    if (res.finished) return;
+    invoke.call(this, req, res);
+    if (res.finished) return;
+    runProcess(this._postprocess, req, res);
   });
 };
 

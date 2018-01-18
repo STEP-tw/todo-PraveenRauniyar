@@ -94,11 +94,18 @@ const serverStaticFiles = function(req, res) {
   };
 };
 
-// const postToDoPage = function(req, res) {
-//   console.log(req.body);
-//   res.write("message got");
-//   res.end();
-// };
+const postToDoPage = function(req, res) {
+  let bodyContent = JSON.stringify(req.body);
+  let toDoData = fs.readFileSync("./toDo.json","utf8");
+  toDoData = JSON.parse(toDoData);
+  toDoData[Praveen] = bodyContent;
+  // console.log(typeof toDoData);
+  JSON.stringify(toDoData);
+  console.log(toDoData);
+  fs.writeFileSync("./toDo.json",toDoData,"utf8");
+  res.write("to Do successfully added");
+  res.end();
+};
 
 let app = WebApp.create();
 app.use(logRequest);
@@ -107,7 +114,7 @@ app.use(redirectLoggedInUserToHome);
 app.use(redirectLoggedOutUserToLogin);
 app.get('/login', serveLogin)
 app.post('/login', postLoginPage);
-// app.post('/toDo.html', postToDoPage);
+app.post('/addToDo', postToDoPage);
 app.get('/logout', serveLogout)
 app.postUse(serverStaticFiles)
 
