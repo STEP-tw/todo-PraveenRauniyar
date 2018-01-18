@@ -1,7 +1,7 @@
 let chai = require('chai');
 let assert = chai.assert;
 process.env.COMMENT_STORE = "./testStore.json";
-let ToDoList = require('../public/js/toDoList.js');
+let ToDoList = require('../src/models/toDoList.js');
 
 describe("ToDoList", function () {
   beforeEach(() => {

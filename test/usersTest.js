@@ -1,7 +1,7 @@
 let chai = require('chai');
 let assert = chai.assert;
 
-let User = require('../public/js/user.js');
+let User = require('../src/models/user.js');
 
 describe("user", function () {
   beforeEach(() => {

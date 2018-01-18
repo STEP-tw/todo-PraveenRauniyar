@@ -106,8 +106,8 @@ app.use(loadUser);
 app.use(redirectLoggedInUserToHome);
 app.use(redirectLoggedOutUserToLogin);
 app.get('/login', serveLogin)
-// app.post('/login', postLoginPage);
-app.post('/toDo.html', postToDoPage);
+app.post('/login', postLoginPage);
+// app.post('/toDo.html', postToDoPage);
 app.get('/logout', serveLogout)
 app.postUse(serverStaticFiles)
 
