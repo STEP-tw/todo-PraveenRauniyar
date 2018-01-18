@@ -1,1 +1,28 @@
-[object Object]
+{
+  "userName": "Praveen",
+  "allToDo": {
+    "chai": {
+      "noOfItems": 4,
+      "title": "chai",
+      "description": "banana h ",
+      "toDoItems": {
+        "1": {
+          "toDoItem": "cool",
+          "status": false
+        },
+        "2": {
+          "toDoItem": "ni h",
+          "status": false
+        },
+        "3": {
+          "toDoItem": "h",
+          "status": false
+        },
+        "4": {
+          "toDoItem": "bahut jaruri h",
+          "status": false
+        }
+      }
+    }
+  }
+}

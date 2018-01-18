@@ -3,6 +3,7 @@ const WebApp = require('./webapp');
 const setContentType = require("./content-Type.js").setContentType;
 const registered_users = require("./registeredUser.js").registered_users;
 const timeStamp = require('./time.js').timeStamp;
+const User = require('../src/models/user.js');
 let toString = o => JSON.stringify(o, null, 2);
 
 let logRequest = (req, res) => {
@@ -53,7 +54,7 @@ const serveLogin = function(req, res) {
 const postLoginPage = function(req, res) {
   let user = registered_users.find(u => u.userName == req.body.userName);
   if (!user) {
-    res.setHeader('Set-Cookie', `logInFailed=true`);
+    res.setHeader('Set-Cookie', `logInFailed=true `);
     res.redirect('/login');
     return;
   };
@@ -94,16 +95,23 @@ const serverStaticFiles = function(req, res) {
   };
 };
 
-const postToDoPage = function(req, res) {
-  let bodyContent = JSON.stringify(req.body);
-  let toDoData = fs.readFileSync("./toDo.json","utf8");
-  toDoData = JSON.parse(toDoData);
-  toDoData[Praveen] = bodyContent;
-  // console.log(typeof toDoData);
-  JSON.stringify(toDoData);
-  console.log(toDoData);
+let user = new User("Praveen");
+
+const addToDo = function (title,description,toDoItem) {
+  user.addToDoList(title,description);
+  toDoItem.forEach(function (item) {
+    user.addToDoItem(title,item);
+  });
+  let toDoData = JSON.stringify(user,null,2);
   fs.writeFileSync("./toDo.json",toDoData,"utf8");
-  res.write("to Do successfully added");
+};
+
+const postToDoPage = function(req, res) {
+  let title = req.body.Title;
+  let description = req.body.description;
+  let toDoItem = req.body.toDoItem;
+  addToDo(title,description,toDoItem);
+  res.redirect("homePage.html");
   res.end();
 };
 
