@@ -28,7 +28,6 @@ let loadUser = (req, res) => {
   let users = new Users("./data");
   let sessionid = req.cookies.sessionid;
   let user = users.getSpecificUser("sessionid",sessionid);
-  console.log(user,'user');
   if (sessionid && user) {
     req.user = user;
   };
@@ -124,18 +123,23 @@ const postToDoPage = function(req, res) {
   user = JSON.parse(user);
   user.__proto__= new User().__proto__;
   addToDo(title,description,toDoItem,user);
-  let homePage = fs.readFileSync("./public/homePage.html",'utf8');
-  // res.redirect('/homePage.html');
-  res.write(homePage);
-  res.end();
+  res.redirect('/homePage.html');
 };
 
+const serveListOfTodos = function (req, res) {
+  let user = fs.readFileSync(`./data/${req.user.userName}.JSON`,'utf8');
+  user = JSON.parse(user);
+  user.__proto__ = new User().__proto__;
+  let listOfTodos = user.getAllToDoTitle();
+  res.write(listOfTodos.toString());
+  res.end();
+}
 let app = WebApp.create();
 app.use(logRequest);
 app.use(loadUser);
 app.use(redirectLoggedInUserToHome);
 app.get('/login', serveLogin);
-app.get('/todo', serveLogin);
+app.get('/todo', serveListOfTodos);
 app.post('/login', postLoginPage);
 app.post('/addToDo', postToDoPage);
 app.get('/logout', serveLogout)
