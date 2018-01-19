@@ -120,10 +120,13 @@ const postToDoPage = function(req, res) {
   let title = req.body.Title;
   let description = req.body.description;
   let toDoItem = req.body.toDoItem;
-  let user = getUser('userName',req.user.userName);
+  let user = fs.readFileSync(`./data/${req.user.userName}.JSON`,'utf8');
+  user = JSON.parse(user);
+  user.__proto__= new User().__proto__;
   addToDo(title,description,toDoItem,user);
-  let homePage = fs.readFileSync("./public/homePage.html");
-  res.redirect('/homePage.html');
+  let homePage = fs.readFileSync("./public/homePage.html",'utf8');
+  // res.redirect('/homePage.html');
+  res.write(homePage);
   res.end();
 };
 
