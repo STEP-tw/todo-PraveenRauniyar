@@ -134,9 +134,34 @@ const serveListOfTodos = function (req, res) {
   res.write(listOfTodos.toString());
   res.end();
 }
+
+const toHtml = function (item) {
+  return `<h3>${item.toDoItem}</h3>`;
+};
+
+const serveTodoFile = function(req,res){
+  let url = req.url;
+  if(url.startsWith('/todo--')){
+    let path = `./data/${req.user.userName}.JSON`;
+    let userData = fs.readFileSync(path,'utf8');
+    userData = JSON.parse(userData);
+    url = url.slice(7);
+    let requiredTodo = userData.allToDo[url];
+    title = `<h1>Title : ${url}</h1>`;
+    let discriptionOfTitle = userData.allToDo[url].description;
+    discriptionOfTitle = `<h2> ##Discription : ${discriptionOfTitle}</h2>`;
+    let allTodoItem = Object.values(requiredTodo.toDoItems);
+    let allItem = allTodoItem.map(toHtml);
+    res.setHeader("Content-Type","text/html")
+    res.write(title + discriptionOfTitle + allItem.join(""));
+    res.end();
+  }
+}
+
 let app = WebApp.create();
 app.use(logRequest);
 app.use(loadUser);
+app.use(serveTodoFile);
 app.use(redirectLoggedInUserToHome);
 app.get('/login', serveLogin);
 app.get('/todo', serveListOfTodos);
