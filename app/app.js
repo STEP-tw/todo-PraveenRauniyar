@@ -3,7 +3,7 @@ const WebApp = require('./webapp');
 const setContentType = require("./content-Type.js").setContentType;
 const registered_users = require("./registeredUser.js").registered_users;
 const timeStamp = require('./time.js').timeStamp;
-const User = require('../src/models/user.js');
+const User = require('../models/user.js');
 let toString = o => JSON.stringify(o, null, 2);
 
 let logRequest = (req, res) => {

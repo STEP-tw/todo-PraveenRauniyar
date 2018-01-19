@@ -1,11 +1,11 @@
 let chai = require('chai');
 let assert = chai.assert;
 
-let User = require('../src/models/user.js');
+let User = require('../models/user.js');
 
 describe("user", function () {
   beforeEach(() => {
-    user = new User("Praveen");
+    user = new User("Praveen",'1234');
   });
 
   describe("getAllToDoTitles()", function () {

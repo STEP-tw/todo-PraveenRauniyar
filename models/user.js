@@ -1,7 +1,8 @@
 let ToDoList = require("./toDoList.js");
 class User {
-  constructor(usersName) {
-    this.userName = usersName;
+  constructor(userName,password) {
+    this.userName = userName;
+    this.password = password;
     this.allToDo = {};
   };
 
@@ -35,7 +36,7 @@ class User {
   editTitles(title,newTitle) {
     return this.getSpecificToDo(title).editTitles(newTitle);
   };
-  
+
   addToDoItem(title, toDoText) {
     this.getSpecificToDo(title).addToDoItem(toDoText);
   };

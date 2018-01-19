@@ -1,21 +1,17 @@
 {
   "userName": "Praveen",
   "allToDo": {
-    "6t7yio": {
-      "noOfItems": 3,
-      "title": "6t7yio",
-      "description": "5r678u",
+    "tea": {
+      "noOfItems": 2,
+      "title": "tea",
+      "description": "making tea",
       "toDoItems": {
         "1": {
-          "toDoItem": "r5678",
+          "toDoItem": "sugar",
           "status": false
         },
         "2": {
-          "toDoItem": "r57t687y8",
-          "status": false
-        },
-        "3": {
-          "toDoItem": "r576t8yu",
+          "toDoItem": "milk",
           "status": false
         }
       }
