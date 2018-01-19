@@ -28,6 +28,7 @@ let loadUser = (req, res) => {
   let users = new Users("./data");
   let sessionid = req.cookies.sessionid;
   let user = users.getSpecificUser("sessionid",sessionid);
+  console.log(user,'user');
   if (sessionid && user) {
     req.user = user;
   };

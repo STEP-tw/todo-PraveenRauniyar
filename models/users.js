@@ -48,10 +48,10 @@ class Users {
   }
 
   updateUser(user){
+    console.log(user,"a");
     let userName = user.userName;
-    let users = this.getUsers();
-    users[userName] = user;
-    writeJsonFile(`${this.src}/${userName}.JSON`,this.users[userName]);
+    this.users[userName] = user;
+    writeJsonFile(`${this.src}/users.JSON`,this.getUsers());
   }
 
   addUser(userName,password){
