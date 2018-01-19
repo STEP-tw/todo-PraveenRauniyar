@@ -117,4 +117,16 @@ describe("user", function () {
       assert.deepEqual(user.getSpecificToDoItem("Cricket", 1), expected);
     });
   });
+  describe("getSpecificUsers()", function () {
+    it("It should give specific toDoItem from specific toDoList of user ", function () {
+      user.addToDoList("Cricket", "play");
+      user.addToDoItem("Cricket", "Play at 10am");
+      user.addToDoItem("Cricket", "rest at 11am");
+      let expected = {
+        toDoItem: 'Play at 10am',
+        status: false
+      }
+      assert.deepEqual(user.getSpecificToDoItem("Cricket", 1), expected);
+    });
+  });
 });

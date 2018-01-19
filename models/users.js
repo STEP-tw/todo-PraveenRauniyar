@@ -3,46 +3,65 @@ const fs = require('fs');
 
 const exists = function(path){
   return fs.existsSync(path);
-}
+};
 
-const getUserDetails = function(){
-  let path = './data/users.JSON';
+const getUserDetails = function(path){
   if(exists(path)){
     let usersDetails = fs.readFileSync(path,'utf8');
     return JSON.parse(usersDetails);
   }
   return {};
-}
+};
 
-const writeToJsonFile = function(path,content){
+const writeJsonFile = function(path,content){
   content = JSON.stringify(content,null,2);
   fs.writeFileSync(path,content);
-}
+};
 
 const createFile = function(path){
-  fs.openSync(`./data/${path}.JSON`,'w+');
-}
+  fs.openSync(path,'w+');
+};
 
 class Users {
-  constructor() {
-    this.users = getUserDetails();
-  }
+  constructor(root) {
+    this.src = root || `./data`;
+    this.users = getUserDetails(`${this.src}/users.JSON`);
+  };
   getUsers(){
     return this.users;
-  }
+  };
   userExists(userName){
     return Object.keys(this.getUsers()).includes(userName);
+  };
+
+  getSpecificUser(field,value){
+    let users = this.getUsers();
+    let usernames = Object.keys(users);
+    let user;
+    usernames.forEach((username)=>{
+      if(users[username][field] == value){
+        user = users[username];
+      }
+    })
+    return user;
+
+  }
+
+  updateUser(user){
+    let userName = user.userName;
+    let users = this.getUsers();
+    users[userName] = user;
+    writeJsonFile(`${this.src}/${userName}.JSON`,this.users[userName]);
   }
 
   addUser(userName,password){
     if(!this.userExists(userName)){
       this.users[userName] = new User(userName,password);
-      createFile(userName);
-      writeToJsonFile(`./data/users.JSON`,this.getUsers());
-      console.log(this.users[userName]);
-      writeToJsonFile(`./data/${userName}.JSON`,this.users[userName]);
-    }
-  }
-}
+      createFile(`${this.src}/${userName}.JSON`);
+      writeJsonFile(`${this.src}/users.JSON`,this.getUsers());
+      writeJsonFile(`${this.src}/${userName}.JSON`,this.users[userName]);
+    };
+  };
+};
 
 module.exports = Users;

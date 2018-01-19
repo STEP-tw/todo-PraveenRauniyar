@@ -1,9 +1,9 @@
 let fs = require('fs');
 const WebApp = require('./webapp');
-const setContentType = require("./content-Type.js").setContentType;
-const registered_users = require("./registeredUser.js").registered_users;
+const setContentType = require("./content_type.js").setContentType;
 const timeStamp = require('./time.js').timeStamp;
 const User = require('../models/user.js');
+const Users = require('../models/users.js');
 let toString = o => JSON.stringify(o, null, 2);
 
 let logRequest = (req, res) => {
@@ -17,9 +17,17 @@ let logRequest = (req, res) => {
   fs.appendFile('request.log', text, () => {});
 };
 
+const getUser = function(field,value){
+  let users = new Users("./data");
+  let user = users.getSpecificUser(field,value);
+  user.__proto__ = new User().__proto__;
+  return user;
+}
+
 let loadUser = (req, res) => {
+  let users = new Users("./data");
   let sessionid = req.cookies.sessionid;
-  let user = registered_users.find(u => u.sessionid == sessionid);
+  let user = users.getSpecificUser("sessionid",sessionid);
   if (sessionid && user) {
     req.user = user;
   };
@@ -52,21 +60,22 @@ const serveLogin = function(req, res) {
 };
 
 const postLoginPage = function(req, res) {
-  let user = registered_users.find(u => u.userName == req.body.userName);
+  let users = new Users("./data");
+  let user = users.getSpecificUser("userName",req.body.userName);
   if (!user) {
-    res.setHeader('Set-Cookie', `logInFailed=true `);
-    res.redirect('/login');
+    res.setHeader('Set-Cookie', `logInFailed=true`);
+    res.redirect('/');
     return;
   };
   let sessionid = new Date().getTime();
-  res.setHeader('Set-Cookie', `sessionid=${sessionid}`);
+  res.setHeader('Set-Cookie', [`sessionid=${sessionid}`,`logInFailed=false;Max-Age=5`]);
   user.sessionid = sessionid;
+  users.updateUser(user);
   res.redirect('/homePage.html');
 };
 
-const serveLogout = function(req, res) {
-  res.setHeader('Set-Cookie', [`loginFailed=false,Expires=${new Date(1).toUTCString()}`, `sessionid=0,Expires=${new Date(1).toUTCString()}`]);
-  delete req.user.sessionid;
+const serveLogout = function(req,res) {
+  res.setHeader('Set-Cookie', [`loginFailed=false;Max-Age=5`, `sessionid=0;Max-Age=5`]);
   res.redirect('/login');
 };
 
@@ -95,22 +104,23 @@ const serverStaticFiles = function(req, res) {
   };
 };
 
-let user = new User("Praveen");
-
-const addToDo = function (title,description,toDoItem) {
+const addToDo = function (title,description,toDoItem,user) {
+  let users = new Users('./data');
   user.addToDoList(title,description);
   toDoItem.forEach(function (item) {
     user.addToDoItem(title,item);
   });
   let toDoData = JSON.stringify(user,null,2);
-  fs.writeFileSync("./toDo.json",toDoData,"utf8");
+  let todoPath = `./data/${user.userName}.JSON`;
+  fs.writeFileSync(todoPath,toDoData);
 };
 
 const postToDoPage = function(req, res) {
   let title = req.body.Title;
   let description = req.body.description;
   let toDoItem = req.body.toDoItem;
-  addToDo(title,description,toDoItem);
+  let user = getUser('userName',req.user.userName);
+  addToDo(title,description,toDoItem,user);
   let homePage = fs.readFileSync("./public/homePage.html");
   res.redirect('/homePage.html');
   res.end();
@@ -120,7 +130,6 @@ let app = WebApp.create();
 app.use(logRequest);
 app.use(loadUser);
 app.use(redirectLoggedInUserToHome);
-app.use(redirectLoggedOutUserToLogin);
 app.get('/login', serveLogin);
 app.get('/todo', serveLogin);
 app.post('/login', postLoginPage);

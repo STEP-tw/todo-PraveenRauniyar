@@ -77,6 +77,7 @@ const runProcess = function(processors, req, res) {
 
 
 const main = function(req, res) {
+  console.log(req.url,req.method);
   parseCookiesAndBindRes(req, res);
   let content = "";
   req.on('data', data => content += data.toString());
