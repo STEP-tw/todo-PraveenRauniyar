@@ -111,7 +111,8 @@ const postToDoPage = function(req, res) {
   let description = req.body.description;
   let toDoItem = req.body.toDoItem;
   addToDo(title,description,toDoItem);
-  res.redirect("homePage.html");
+  let homePage = fs.readFileSync("./public/homePage.html");
+  res.redirect('/homePage.html');
   res.end();
 };
 
@@ -120,10 +121,11 @@ app.use(logRequest);
 app.use(loadUser);
 app.use(redirectLoggedInUserToHome);
 app.use(redirectLoggedOutUserToLogin);
-app.get('/login', serveLogin)
+app.get('/login', serveLogin);
+app.get('/todo', serveLogin);
 app.post('/login', postLoginPage);
 app.post('/addToDo', postToDoPage);
 app.get('/logout', serveLogout)
-app.postUse(serverStaticFiles)
+app.postUse(serverStaticFiles);
 
 exports.app = app;

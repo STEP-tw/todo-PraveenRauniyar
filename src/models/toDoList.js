@@ -9,6 +9,9 @@ class ToDoList {
   getTitle() {
     return this.title;
   };
+  editTitles(newTitle) {
+    this.title = newTitle;
+  };
   getAllToDoItems() {
     return this.toDoItems;
   };

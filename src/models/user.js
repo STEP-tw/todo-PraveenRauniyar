@@ -32,6 +32,10 @@ class User {
     return this.getSpecificToDo(title).getAllToDoItems();
   };
 
+  editTitles(title,newTitle) {
+    return this.getSpecificToDo(title).editTitles(newTitle);
+  };
+  
   addToDoItem(title, toDoText) {
     this.getSpecificToDo(title).addToDoItem(toDoText);
   };
