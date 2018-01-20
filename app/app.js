@@ -169,7 +169,8 @@ const deleteTodo = function (req,res) {
   user.removeToDoList(req.body.title);
   user = JSON.stringify(user,null,2);
   fs.writeFileSync("./data/"+req.user.userName+".JSON",user);
-  res.redirect('./homePage.html');
+  res.setHeader('location','/homePage.html');
+  res.end();
 };
 
 let app = WebApp.create();

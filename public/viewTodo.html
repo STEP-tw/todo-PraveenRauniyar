@@ -4,11 +4,16 @@
 <head>
   <!-- <script src = "/delete_todo.js"></script> -->
   <script type="text/javascript">
+    const handleResponse = function(){
+      let location = this.getResponseHeader('location');
+      window.location = location;
+    }
     const createRequest = function() {
       let deleteReq = new XMLHttpRequest();
-      deleteReq.open('POST', '/deleteTodo');
+      deleteReq.open('POST','/deleteTodo');
+      deleteReq.setRequestHeader('location','/');
+      deleteReq.addEventListener('load',handleResponse);
       let todoToDelete = document.getElementById('title').innerText;
-      console.log(todoToDelete.slice(6));
       deleteReq.send(`title=${todoToDelete.slice(6)}`);
     }
 
