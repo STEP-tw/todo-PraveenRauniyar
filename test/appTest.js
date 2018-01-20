@@ -4,7 +4,7 @@ let request = require('./requestSimulator.js');
 process.env.COMMENT_STORE = "./testStore.json";
 let app = require('../app/app.js').app;
 let th = require('./testHelper.js');
-let Users =require('../models/users.js');
+let Users = require('../models/users.js');
 
 describe('app', () => {
   describe('GET /bad', () => {
@@ -69,12 +69,10 @@ describe('app', () => {
         body: 'userName=praveen'
       }, res => {
         th.should_be_redirected_to(res, '/homePage.html');
-        th.should_have_expiring_cookie(res,'logInFailed','false');
+        th.should_have_expiring_cookie(res, 'logInFailed', 'false');
         done();
-      }
-    );
+      });
     });
-
     it('redirects to login  with message for invalid use', done => {
       request(app, {
         method: 'POST',
@@ -82,7 +80,7 @@ describe('app', () => {
         body: 'userName=Amit'
       }, res => {
         th.should_be_redirected_to(res, '/login');
-        th.should_have_cookie(res,'logInFailed','true');
+        th.should_have_cookie(res, 'logInFailed', 'true');
         done();
       });
     });
@@ -95,29 +93,61 @@ describe('app', () => {
         url: '/logout'
       }, res => {
         th.should_be_redirected_to(res, '/login');
-        th.should_have_expiring_cookie(res, 'loginFailed','false');
-        th.should_have_expiring_cookie(res, 'sessionid','0');
+        th.should_have_expiring_cookie(res, 'loginFailed', 'false');
+        th.should_have_expiring_cookie(res, 'sessionid', '0');
         done();
-      }
-    );
+      });
     });
   });
+
   describe("Get /todo", () => {
     it('should give todos of user ', done => {
       let users = new Users("./data");
-
       request(app, {
         method: 'GET',
         url: '/todo',
         headers: {
           'cookie': 'sessionid=1516362406243'
         }
-
       }, res => {
-        th.body_contains(res,"anjum");
+        th.body_contains(res, "anjum");
         done();
-      }
-    );
+      });
     })
   });
+
+  describe('Post /addToDo', function() {
+    it('redirects to homepage.html with given data', done => {
+      request(app, {
+        method: 'POST',
+        url: '/addToDo',
+        headers: {
+          'cookie': 'sessionid=1516362406243'
+        },
+        body: 'title=tea&discription=makingtea&toDoItem=sugar&toDoItem=water'
+      }, res => {
+        th.should_be_redirected_to(res, '/homePage.html');
+        done();
+      });
+    });
+  });
+
+  describe("Get /toDo.html", () => {
+    it('should give todos of user ', done => {
+      let users = new Users("./data");
+      request(app, {
+        method: 'GET',
+        url: '/toDo.html',
+        headers: {
+          'cookie': 'sessionid=1516362406243'
+        }
+      }, res => {
+        th.body_contains(res, "title");
+        th.body_contains(res, "Discription");
+        th.body_contains(res, "Add To Do Item");
+        done();
+      });
+    })
+  });
+
 });
