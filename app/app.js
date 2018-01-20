@@ -29,6 +29,9 @@ let loadUser = (req, res) => {
   let sessionid = req.cookies.sessionid;
   let user = users.getSpecificUser("sessionid",sessionid);
   if (sessionid && user) {
+    user = fs.readFileSync(`./data/${user.userName}.JSON`,'utf8');
+    user = JSON.parse(user);
+    user.__proto__ = new User().__proto__;
     req.user = user;
   };
 };
@@ -139,17 +142,21 @@ const serveListOfTodos = function (req, res) {
 }
 
 
-const toHtml = function (item) {
+const toHtml = function (content,item) {
   return `<h3>${item.toDoItem}</h3>`;
 };
 
-const getAllToDoInHtml = function (todo) {
-  let content = fs.readFileSync('./public/viewTodo.html','utf8');
+const toFormInput = function(content,item){
+  return `<input type ="text" name = "item" value = ${item.toDoItem}><br/>`;
+}
+
+const getAllToDoInHtml = function (content,todo,toFormat) {
   let description =  todo.description;
   content = content.replace('TITLE',`${todo.title}`);
   content = content.replace('DESCRIPTION',`${description}`);
   let allTodoItem = Object.values(todo.toDoItems);
-  allTodoItem = allTodoItem.map(toHtml).join('');
+  console.log(allTodoItem);
+  allTodoItem = allTodoItem.reduce(toFormat,'');
   content = content.replace("ITEMS",allTodoItem);
   return content;
 };
@@ -163,8 +170,9 @@ const serveTodoFile = function(req,res){
     while(url.includes('%20')){
       url = url.replace('%20',' ');
     };
+    let content = fs.readFileSync('./public/viewTodo.html','utf8');
     let todo = user.allToDo[url];
-    res.write(getAllToDoInHtml(todo));
+    res.write(getAllToDoInHtml(content,todo,toHtml));
     res.end();
   }
 };
@@ -179,11 +187,22 @@ const deleteTodo = function (req,res) {
   res.end();
 };
 
+const editTodo = function(req,res){
+  if(req.url.startsWith('/editTodo')){
+    let content = fs.readFileSync('./public/edit_todo.html','utf8');
+    let title = req.url.slice(9);
+    let todo = req.user.getSpecificToDo(title);
+    res.write(getAllToDoInHtml(content,todo,toFormInput));
+    res.end();
+  }
+}
+
 let app = WebApp.create();
 app.use(logRequest);
 app.use(loadUser);
 app.use(serveTodoFile);
 app.use(redirectLoggedInUserToHome);
+app.use(editTodo);
 app.get('/login', serveLogin);
 app.get('/todo', serveListOfTodos);
 app.post('/login', postLoginPage);
@@ -191,5 +210,4 @@ app.post('/addToDo', postToDoPage);
 app.get('/logout', serveLogout)
 app.postUse(serverStaticFiles);
 app.post("/deleteTodo",deleteTodo);
-
 exports.app = app;

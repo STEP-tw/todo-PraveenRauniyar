@@ -2,16 +2,36 @@ const handleResponse = function(){
   let location = this.getResponseHeader('location');
   window.location = location;
 }
+
+const getTitle = ()=>{
+  let todoTitle = document.getElementById('title').innerText;
+  return todoTitle.slice(6);
+}
+
 const createRequest = function() {
   let deleteReq = new XMLHttpRequest();
   deleteReq.open('POST','/deleteTodo');
   deleteReq.setRequestHeader('location','/');
   deleteReq.addEventListener('load',handleResponse);
-  let todoToDelete = document.getElementById('title').innerText;
-  deleteReq.send(`title=${todoToDelete.slice(6)}`);
+  deleteReq.send(`title=${getTitle()}`);
 }
 
-const deleteTodo = function() {
-  document.getElementById('delete').onclick = createRequest;
+const showFormToEdit = function(){
+  let formContent = this.responseText;
+  document.body.innerHTML = formContent;
 }
-window.onload = deleteTodo;
+
+const editRequest = function(){
+  let editReq = new XMLHttpRequest();
+  let title = document.getElementById('id')
+  editReq.open('GET',`/editTodo${getTitle()}`);
+  editReq.addEventListener('load',showFormToEdit);
+  editReq.send();
+
+}
+
+const addListeners = function(){
+  document.getElementById('delete').onclick = createRequest;
+  document.getElementById('edit').onclick = editRequest;
+}
+window.onload = addListeners;

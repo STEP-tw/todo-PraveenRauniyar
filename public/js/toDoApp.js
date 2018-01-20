@@ -8,4 +8,4 @@ const addToDoItem = function () {
   inputBox.required = true;
   form.appendChild(inputBox);
   form.appendChild(tagForGap);
-}
+};
