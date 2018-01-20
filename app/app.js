@@ -118,7 +118,10 @@ const addToDo = function (title,description,toDoItem,user) {
 const postToDoPage = function(req, res) {
   let title = req.body.Title;
   let description = req.body.description;
-  let toDoItem = req.body.toDoItem;
+  let toDoItem = req.body.toDoItem || [];
+  if(typeof(toDoItem)=='string'){
+    toDoItem = [toDoItem];
+  }
   let user = fs.readFileSync(`./data/${req.user.userName}.JSON`,'utf8');
   user = JSON.parse(user);
   user.__proto__= new User().__proto__;
@@ -159,7 +162,7 @@ const serveTodoFile = function(req,res){
     let url = req.url.slice(7);
     while(url.includes('%20')){
       url = url.replace('%20',' ');
-    }
+    };
     let todo = user.allToDo[url];
     res.write(getAllToDoInHtml(todo));
     res.end();

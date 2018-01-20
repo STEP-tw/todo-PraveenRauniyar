@@ -5,6 +5,7 @@ const addToDoItem = function () {
   inputBox.type = "text";
   inputBox.className = "name-Box";
   inputBox.name = "toDoItem";
+  inputBox.required = true;
   form.appendChild(inputBox);
   form.appendChild(tagForGap);
 }
