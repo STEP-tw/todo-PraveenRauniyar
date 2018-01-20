@@ -4,6 +4,7 @@ let request = require('./requestSimulator.js');
 process.env.COMMENT_STORE = "./testStore.json";
 let app = require('../app/app.js').app;
 let th = require('./testHelper.js');
+let Users =require('../models/users.js');
 
 describe('app', () => {
   describe('GET /bad', () => {
@@ -18,7 +19,7 @@ describe('app', () => {
     });
   });
 
-  describe('GET /welcomePage.html', () => {
+  describe('GET /', () => {
     it('should display welcome page', done => {
       request(app, {
         method: 'GET',
@@ -61,31 +62,62 @@ describe('app', () => {
   });
 
   describe('POST /login', () => {
-    it('redirects to homePage for valid user', done => {
+    it('redirects to login page by setting cookie sessionid', done => {
       request(app, {
         method: 'POST',
         url: '/login',
-        body: 'userName=Praveen'
+        body: 'userName=praveen'
       }, res => {
         th.should_be_redirected_to(res, '/homePage.html');
-        th.should_not_have_cookie(res, 'message');
+        th.should_have_expiring_cookie(res,'logInFailed','false');
         done();
       }
     );
     });
-    
-    it('redirects to login  with message for invalid user', done => {
+
+    it('redirects to login  with message for invalid use', done => {
       request(app, {
         method: 'POST',
         url: '/login',
         body: 'userName=Amit'
       }, res => {
         th.should_be_redirected_to(res, '/login');
-        th.should_have_expiring_cookie(res, 'message', 'login failed');
+        th.should_have_cookie(res,'logInFailed','true');
         done();
       });
     });
   });
+
+  describe('GET logout', () => {
+    it('should set expiring cookies and redirect to login page ', done => {
+      request(app, {
+        method: 'GET',
+        url: '/logout'
+      }, res => {
+        th.should_be_redirected_to(res, '/login');
+        th.should_have_expiring_cookie(res, 'loginFailed','false');
+        th.should_have_expiring_cookie(res, 'sessionid','0');
+        done();
+      }
+    );
+    });
+  });
+  describe("Get /todo", () => {
+    it('should give todos of user ', done => {
+      let users = new Users("./data");
+
+      request(app, {
+        method: 'GET',
+        url: '/todo',
+        headers: {
+          'cookie': 'sessionid=1516362406243'
+        }
+
+      }, res => {
+        th.body_contains(res,"anjum");
+        done();
+      }
+    );
+    })
+  });
 });
-
-

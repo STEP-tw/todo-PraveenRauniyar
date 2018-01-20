@@ -64,7 +64,7 @@ const postLoginPage = function(req, res) {
   let user = users.getSpecificUser("userName",req.body.userName);
   if (!user) {
     res.setHeader('Set-Cookie', `logInFailed=true`);
-    res.redirect('/');
+    res.redirect('/login');
     return;
   };
   let sessionid = new Date().getTime();
@@ -149,7 +149,7 @@ const serveTodoFile = function(req,res){
     let requiredTodo = userData.allToDo[url];
     title = `<h1>Title : ${url}</h1>`;
     let discriptionOfTitle = userData.allToDo[url].description;
-    discriptionOfTitle = `<h2> ##Discription : ${discriptionOfTitle}</h2>`;
+    discriptionOfTitle = `<h2>$Discription {discriptionOfTitle}</h2>`;
     let allTodoItem = Object.values(requiredTodo.toDoItems);
     let allItem = allTodoItem.map(toHtml);
     res.setHeader("Content-Type","text/html")
