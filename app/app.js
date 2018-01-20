@@ -157,6 +157,9 @@ const serveTodoFile = function(req,res){
     user = fs.readFileSync(path,'utf8');
     user = JSON.parse(user);
     let url = req.url.slice(7);
+    while(url.includes('%20')){
+      url = url.replace('%20',' ');
+    }
     let todo = user.allToDo[url];
     res.write(getAllToDoInHtml(todo));
     res.end();

@@ -6,6 +6,8 @@ let app = require('../app/app.js').app;
 let th = require('./testHelper.js');
 let Users = require('../models/users.js');
 
+let sessionid;
+
 describe('app', () => {
   describe('GET /bad', () => {
     it('responds with 404', done => {
@@ -68,6 +70,7 @@ describe('app', () => {
         url: '/login',
         body: 'userName=praveen'
       }, res => {
+        sessionid = res.headers.cookie.sessionid;
         th.should_be_redirected_to(res, '/homePage.html');
         th.should_have_expiring_cookie(res, 'logInFailed', 'false');
         done();
@@ -86,19 +89,6 @@ describe('app', () => {
     });
   });
 
-  describe('GET logout', () => {
-    it('should set expiring cookies and redirect to login page ', done => {
-      request(app, {
-        method: 'GET',
-        url: '/logout'
-      }, res => {
-        th.should_be_redirected_to(res, '/login');
-        th.should_have_expiring_cookie(res, 'loginFailed', 'false');
-        th.should_have_expiring_cookie(res, 'sessionid', '0');
-        done();
-      });
-    });
-  });
 
   describe("Get /todo", () => {
     it('should give todos of user ', done => {
@@ -107,7 +97,7 @@ describe('app', () => {
         method: 'GET',
         url: '/todo',
         headers: {
-          'cookie': 'sessionid=1516362406243'
+          'cookie': `sessionid=${sessionid}`
         }
       }, res => {
         th.body_contains(res, "anjum");
@@ -122,7 +112,7 @@ describe('app', () => {
         method: 'POST',
         url: '/addToDo',
         headers: {
-          'cookie': 'sessionid=1516362406243'
+          'cookie': `sessionid=${sessionid}`
         },
         body: 'title=tea&discription=makingtea&toDoItem=sugar&toDoItem=water'
       }, res => {
@@ -139,7 +129,7 @@ describe('app', () => {
         method: 'GET',
         url: '/toDo.html',
         headers: {
-          'cookie': 'sessionid=1516362406243'
+          'cookie': `sessionid=${sessionid}`
         }
       }, res => {
         th.body_contains(res, "title");
@@ -149,15 +139,15 @@ describe('app', () => {
       });
     })
   });
-  describe.skip('Post /deleteTodo', function() {
+  describe('Post /deleteTodo', function() {
     it('should redirect to homePage and delete the given todo', function(done) {
       request(app, {
         method: 'POST',
         url: "/deleteTodo",
         headers: {
-          'cookie': 'sessionid=1516359758473'
+          'cookie': `sessionid=${sessionid}`
         },
-        body: "title=anjum"
+        body: "title=tytuijokp"
       }, res => {
         th.should_be_redirected_to(res, '/homePage.html');
         done();
@@ -168,7 +158,7 @@ describe('app', () => {
         method: 'GET',
         url: "/todo",
         headers: {
-          'cookie': 'sessionid=1516359758473'
+          'cookie': `sessionid=${sessionid}`
         },
         body: "title=anjum"
       }, res => {
@@ -177,4 +167,17 @@ describe('app', () => {
       done();
     });
   })
+  describe('GET logout', () => {
+    it('should set expiring cookies and redirect to login page ', done => {
+      request(app, {
+        method: 'GET',
+        url: '/logout'
+      }, res => {
+        th.should_be_redirected_to(res, '/login');
+        th.should_have_expiring_cookie(res, 'loginFailed', 'false');
+        th.should_have_expiring_cookie(res, 'sessionid', '0');
+        done();
+      });
+    });
+  });
 });
