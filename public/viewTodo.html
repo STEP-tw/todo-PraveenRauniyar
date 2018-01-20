@@ -2,26 +2,7 @@
 <html>
 
 <head>
-  <!-- <script src = "/delete_todo.js"></script> -->
-  <script type="text/javascript">
-    const handleResponse = function(){
-      let location = this.getResponseHeader('location');
-      window.location = location;
-    }
-    const createRequest = function() {
-      let deleteReq = new XMLHttpRequest();
-      deleteReq.open('POST','/deleteTodo');
-      deleteReq.setRequestHeader('location','/');
-      deleteReq.addEventListener('load',handleResponse);
-      let todoToDelete = document.getElementById('title').innerText;
-      deleteReq.send(`title=${todoToDelete.slice(6)}`);
-    }
-
-    const deleteTodo = function() {
-      document.getElementById('delete').onclick = createRequest;
-    }
-    window.onload = deleteTodo;
-  </script>
+  <script src = "./js/delete_todo.js"></script>
   <meta charset="utf-8">
   <title></title>
 </head>
@@ -32,6 +13,7 @@
   <h4>Description: DESCRIPTION </h4>
   <div> ITEMS </div>
   <button id="delete">Delete ToDo</button>
+  <label><a href = "logout" > Logout  </a>
 </body>
 
 </html>

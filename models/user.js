@@ -34,7 +34,9 @@ class User {
   };
 
   editTitles(title,newTitle) {
-    return this.getSpecificToDo(title).editTitles(newTitle);
+    this.getSpecificToDo(title).editTitles(newTitle);
+    this.allTodos[newTitle] = this.allTodos[title];
+    delete this.allTodo[title];
   };
 
   addToDoItem(title, toDoText) {
