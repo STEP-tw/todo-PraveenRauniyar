@@ -135,28 +135,42 @@ const serveListOfTodos = function (req, res) {
   res.end();
 }
 
+
 const toHtml = function (item) {
   return `<h3>${item.toDoItem}</h3>`;
 };
 
+const getAllToDoInHtml = function (todo) {
+  let content = fs.readFileSync('./public/viewTodo.html','utf8');
+  let description =  todo.description;
+  content = content.replace('TITLE',`${todo.title}`);
+  content = content.replace('DESCRIPTION',`${description}`);
+  let allTodoItem = Object.values(todo.toDoItems);
+  allTodoItem = allTodoItem.map(toHtml).join('');
+  content = content.replace("ITEMS",allTodoItem);
+  return content;
+};
+
 const serveTodoFile = function(req,res){
-  let url = req.url;
-  if(url.startsWith('/todo--')){
+  if(req.url.startsWith('/todo--')){
     let path = `./data/${req.user.userName}.JSON`;
-    let userData = fs.readFileSync(path,'utf8');
-    userData = JSON.parse(userData);
-    url = url.slice(7);
-    let requiredTodo = userData.allToDo[url];
-    title = `<h1>Title : ${url}</h1>`;
-    let discriptionOfTitle = userData.allToDo[url].description;
-    discriptionOfTitle = `<h2>$Discription {discriptionOfTitle}</h2>`;
-    let allTodoItem = Object.values(requiredTodo.toDoItems);
-    let allItem = allTodoItem.map(toHtml);
-    res.setHeader("Content-Type","text/html")
-    res.write(title + discriptionOfTitle + allItem.join(""));
+    user = fs.readFileSync(path,'utf8');
+    user = JSON.parse(user);
+    let url = req.url.slice(7);
+    let todo = user.allToDo[url];
+    res.write(getAllToDoInHtml(todo));
     res.end();
   }
-}
+};
+const deleteTodo = function (req,res) {
+  let user = fs.readFileSync("./data/"+req.user.userName+".JSON",'utf8');
+  user = JSON.parse(user);
+  user.__proto__ =new User().__proto__;
+  user.removeToDoList(req.body.title);
+  user = JSON.stringify(user,null,2);
+  fs.writeFileSync("./data/"+req.user.userName+".JSON",user);
+  res.redirect('./homePage.html');
+};
 
 let app = WebApp.create();
 app.use(logRequest);
@@ -169,5 +183,6 @@ app.post('/login', postLoginPage);
 app.post('/addToDo', postToDoPage);
 app.get('/logout', serveLogout)
 app.postUse(serverStaticFiles);
+app.post("/deleteTodo",deleteTodo);
 
 exports.app = app;

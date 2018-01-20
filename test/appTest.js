@@ -143,11 +143,38 @@ describe('app', () => {
         }
       }, res => {
         th.body_contains(res, "title");
-        th.body_contains(res, "Discription");
+        th.body_contains(res, "Description");
         th.body_contains(res, "Add To Do Item");
         done();
       });
     })
   });
-
+  describe.skip('Post /deleteTodo', function() {
+    it('should redirect to homePage and delete the given todo', function(done) {
+      request(app, {
+        method: 'POST',
+        url: "/deleteTodo",
+        headers: {
+          'cookie': 'sessionid=1516359758473'
+        },
+        body: "title=anjum"
+      }, res => {
+        th.should_be_redirected_to(res, '/homePage.html');
+        done();
+      });
+    });
+    it('now the list of todos should not have deleted todo', function(done) {
+      request(app, {
+        method: 'GET',
+        url: "/todo",
+        headers: {
+          'cookie': 'sessionid=1516359758473'
+        },
+        body: "title=anjum"
+      }, res => {
+        th.body_does_not_contain(res, "anjum");
+      });
+      done();
+    });
+  })
 });

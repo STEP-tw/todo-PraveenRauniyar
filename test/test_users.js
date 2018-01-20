@@ -42,11 +42,9 @@ describe('users', function() {
   describe('getSpecificUser(field,value)', function() {
     it('should give user data with user name', function() {
       let expected = new User('praveen', '1234');
+      let users = new Users('./test/data');
       users.addUser('praveen', '1234');
-      assert.deepEqual({
-        'praveen': expected,
-        anju: new User('anju', '1234')
-      }, users.getSpecificUser("userName","praveen"));
+      assert.deepEqual(expected, users.getSpecificUser("userName","praveen"));
     });
   });
 });
