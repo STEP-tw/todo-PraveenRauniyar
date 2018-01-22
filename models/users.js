@@ -24,8 +24,8 @@ const createFile = function(path){
 
 class Users {
   constructor(root) {
-    this.src = root || './data';
-    this.users = getUserDetails(`${this.src}/users.JSON`);
+    this.src = root;
+    this.users = getUserDetails(`${this.src}/users.JSON`) || {};
   };
   getUsers(){
     return this.users;
@@ -50,7 +50,6 @@ class Users {
   addUser(userName,password){
     if(!this.userExists(userName)){
       this.users[userName] = new User(userName,password);
-      writeJsonFile(`${this.src}/users.JSON`,this.getUsers());
     };
   };
 };

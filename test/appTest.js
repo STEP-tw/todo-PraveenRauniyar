@@ -115,7 +115,7 @@ describe('app', () => {
           'cookie': `sessionid=${sessionid}`
         }
       }, res => {
-        console.log(users);
+        console.log(sessionid);
         th.body_contains(res,'tea');
         done();
       });
@@ -150,7 +150,6 @@ describe('app', () => {
         },
         body: "title=tytuijokp"
       }, res => {
-        console.log(sessionid);
         th.should_be_redirected_to(res, '/homePage.html');
         done();
       });

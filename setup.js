@@ -9,3 +9,5 @@ if(!fs.existsSync('./data')){
 let users = new Users('./data');
 users.addUser('praveen','0000');
 users.addUser('manish','0000');
+
+fs.writeFileSync('./data/users.JSON',JSON.stringify(users.users,null,2));

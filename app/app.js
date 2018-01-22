@@ -4,6 +4,8 @@ const setContentType = require("./content_type.js").setContentType;
 const timeStamp = require('./time.js').timeStamp;
 const User = require('../models/user.js');
 const Users = require('../models/users.js');
+
+let users = new Users('./data');
 let toString = o => JSON.stringify(o, null, 2);
 
 let logRequest = (req, res) => {
@@ -18,13 +20,11 @@ let logRequest = (req, res) => {
 };
 
 const getUser = function(field,value){
-  let users = new Users("./data");
   let user = users.getSpecificUser(field,value);
   return user;
 }
 
-let loadUser = (req, res) => {
-  let users = new Users("./data");
+let loadUser = (req,res) => {
   let sessionid = req.cookies.sessionid;
   let user = getUser("sessionid",sessionid);
   if (sessionid && user) {
@@ -45,7 +45,7 @@ const getLoginPage = function(req, res) {
   if (req.cookies.logInFailed)
     res.write('<p>logIn Failed</p>');
   let filePath = "./public/login.html";
-  let loginPageContent = fs.readFileSync(filePath, "utf8")
+  let loginPageContent = fs.readFileSync(filePath, "utf8");
   res.write(loginPageContent);
 };
 
@@ -60,8 +60,6 @@ const serveLogin = function(req, res) {
 };
 
 const postLoginPage = function(req, res) {
-  let users = new Users("./data");
-  console.log(users);
   let user = getUser("userName",req.body.userName);
   if (!user) {
     res.setHeader('Set-Cookie', `logInFailed=true`);
@@ -72,13 +70,16 @@ const postLoginPage = function(req, res) {
   res.setHeader('Set-Cookie', [`sessionid=${sessionid}`,`logInFailed=false;Max-Age=5`]);
   user.sessionid = sessionid;
   users.users[user.userName] = user;
-  fs.writeFileSync('./data/users.JSON',JSON.stringify(users.users,null,2));
+  console.log(users.users[user.userName]);
+  // fs.writeFileSync('./data/users.JSON',JSON.stringify(users.users,null,2));
   res.redirect('/homePage.html');
 };
 
 const serveLogout = function(req,res) {
   res.setHeader('Set-Cookie', [`loginFailed=false;Max-Age=5`, `sessionid=0;Max-Age=5`]);
   res.redirect('/login');
+  let usersDetails = JSON.stringify(users.users,null,2);
+  fs.writeFileSync('./data/users.JSON',usersDetails);
 };
 
 const getFilePath = function(req) {
@@ -107,15 +108,16 @@ const serverStaticFiles = function(req, res) {
 };
 
 const addToDo = function (title,description,toDoItem,user) {
-  let users = new Users('./data');
+  console.log(user);
   user.addToDoList(title,description);
   toDoItem.forEach(function (item) {
     user.addToDoItem(title,item);
   });
+  console.log(users.users);
   users.users[user.userName] = user;
-  let toDoData = JSON.stringify(users.users,null,2);
-  let todoPath = `./data/users.JSON`;
-  fs.writeFileSync(todoPath,toDoData);
+  // let toDoData = JSON.stringify(users.users,null,2);
+  // let todoPath = `./data/users.JSON`;
+  // fs.writeFileSync(todoPath,toDoData);
 };
 
 const postToDoPage = function(req, res) {
@@ -125,6 +127,7 @@ const postToDoPage = function(req, res) {
   if(typeof(toDoItem)=='string'){
     toDoItem = [toDoItem];
   }
+  console.log(req.user,'user');
   addToDo(title,description,toDoItem,req.user);
   res.redirect('/homePage.html');
 };
@@ -167,11 +170,11 @@ const serveTodoFile = function(req,res){
   }
 };
 const deleteTodo = function (req,res) {
-  let users = new Users('./data');
+  // let users = new Users('./data');
   req.user.removeToDoList(req.body.title);
   users.users[req.user.userName] = req.user;
-  users = JSON.stringify(users.users,null,2);
-  fs.writeFileSync("./data/users.JSON",users);
+  // users = JSON.stringify(users.users,null,2);
+  // fs.writeFileSync("./data/users.JSON",users);
   res.setHeader('location','/homePage.html');
   res.end();
 };
