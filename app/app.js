@@ -85,7 +85,6 @@ const postLoginPage = function(req, res) {
 const serveLogout = function(req,res) {
   res.setHeader('Set-Cookie', [`loginFailed=false;Max-Age=5`, `sessionid=0;Max-Age=5`]);
   res.redirect('/login');
-  console.log();
   app.fs.writeFileSync('./data/users.JSON',toS(users.users));
 };
 
@@ -142,22 +141,27 @@ const serveListOfTodos = function (req, res) {
 }
 
 
-const toHtml = function (content,item) {
-  return `<h3>${item.toDoItem}</h3>`;
+const toFormInput = function (content,item) {
+  return `<input type ="text" name = "item"
+  value = ${item.toDoItem}><br/>`;
 };
 
-const toFormInput = function(content,item){
-  return `<input type ="text" name = "item" value = ${item.toDoItem}><br/>`;
-}
+const toHtml = function(content,item,itemid){
+  return `<input type = "checkbox" id = "${itemid}"/ onclick = "changeStatus()"/>
+  <big>${item.toDoItem}</big>
+  <br/>`;
+};
 
-const getAllToDoInHtml = function (todo,toFormat) {
-  let content = app.fs.readFileSync('./public/viewTodo.html','utf8');
+const getAllToDoInHtml = function (content,todo,toFormat) {
   let description =  todo.description;
   content = content.replace('TITLE',`${todo.title}`);
   content = content.replace('DESCRIPTION',`${description}`);
-  let allTodoItem = Object.values(todo.toDoItems);
-  allTodoItem = allTodoItem.reduce(toFormat,'');
-  content = content.replace("ITEMS",allTodoItem);
+  let allTodoItem = Object.values(todo.toDoItems || {});
+  let itemid = 0, itemsInHtmlForm = '';
+  allTodoItem.forEach((item)=>{
+    itemsInHtmlForm += toFormat(itemsInHtmlForm,item,++itemid);
+  })
+  content = content.replace("ITEMS",itemsInHtmlForm);
   return content;
 };
 
@@ -168,7 +172,8 @@ const serveTodoFile = function(req,res){
       url = url.replace('%20',' ');
     };
     let todo = req.user.allToDo[url];
-    res.write(getAllToDoInHtml(todo,toHtml));
+    let content = app.fs.readFileSync('./public/viewTodo.html','utf8');
+    res.write(getAllToDoInHtml(content,todo,toHtml));
     res.end();
   }
 };
@@ -186,7 +191,7 @@ const editTodo = function(req,res){
     let content = app.fs.readFileSync('./public/edit_todo.html','utf8');
     let title = req.url.slice(9);
     let todo = req.user.getSpecificToDo(title);
-    res.write(getAllToDoInHtml(content,todo,toFormInput));
+    res.write(getAllToDoInHtml(content,todo,toHtml));
     res.end();
   }
 }
