@@ -20,17 +20,14 @@ let logRequest = (req, res) => {
 const getUser = function(field,value){
   let users = new Users("./data");
   let user = users.getSpecificUser(field,value);
-  user.__proto__ = new User().__proto__;
   return user;
 }
 
 let loadUser = (req, res) => {
   let users = new Users("./data");
   let sessionid = req.cookies.sessionid;
-  let user = users.getSpecificUser("sessionid",sessionid);
+  let user = getUser("sessionid",sessionid);
   if (sessionid && user) {
-    user = fs.readFileSync(`./data/${user.userName}.JSON`,'utf8');
-    user = JSON.parse(user);
     user.__proto__ = new User().__proto__;
     req.user = user;
   };
@@ -64,7 +61,8 @@ const serveLogin = function(req, res) {
 
 const postLoginPage = function(req, res) {
   let users = new Users("./data");
-  let user = users.getSpecificUser("userName",req.body.userName);
+  console.log(users);
+  let user = getUser("userName",req.body.userName);
   if (!user) {
     res.setHeader('Set-Cookie', `logInFailed=true`);
     res.redirect('/login');
@@ -73,7 +71,8 @@ const postLoginPage = function(req, res) {
   let sessionid = new Date().getTime();
   res.setHeader('Set-Cookie', [`sessionid=${sessionid}`,`logInFailed=false;Max-Age=5`]);
   user.sessionid = sessionid;
-  users.updateUser(user);
+  users.users[user.userName] = user;
+  fs.writeFileSync('./data/users.JSON',JSON.stringify(users.users,null,2));
   res.redirect('/homePage.html');
 };
 
@@ -113,8 +112,9 @@ const addToDo = function (title,description,toDoItem,user) {
   toDoItem.forEach(function (item) {
     user.addToDoItem(title,item);
   });
-  let toDoData = JSON.stringify(user,null,2);
-  let todoPath = `./data/${user.userName}.JSON`;
+  users.users[user.userName] = user;
+  let toDoData = JSON.stringify(users.users,null,2);
+  let todoPath = `./data/users.JSON`;
   fs.writeFileSync(todoPath,toDoData);
 };
 
@@ -125,18 +125,12 @@ const postToDoPage = function(req, res) {
   if(typeof(toDoItem)=='string'){
     toDoItem = [toDoItem];
   }
-  let user = fs.readFileSync(`./data/${req.user.userName}.JSON`,'utf8');
-  user = JSON.parse(user);
-  user.__proto__= new User().__proto__;
-  addToDo(title,description,toDoItem,user);
+  addToDo(title,description,toDoItem,req.user);
   res.redirect('/homePage.html');
 };
 
 const serveListOfTodos = function (req, res) {
-  let user = fs.readFileSync(`./data/${req.user.userName}.JSON`,'utf8');
-  user = JSON.parse(user);
-  user.__proto__ = new User().__proto__;
-  let listOfTodos = user.getAllToDoTitle();
+  let listOfTodos = req.user.getAllToDoTitle();
   res.write(listOfTodos.toString());
   res.end();
 }
@@ -150,12 +144,12 @@ const toFormInput = function(content,item){
   return `<input type ="text" name = "item" value = ${item.toDoItem}><br/>`;
 }
 
-const getAllToDoInHtml = function (content,todo,toFormat) {
+const getAllToDoInHtml = function (todo,toFormat) {
+  let content = fs.readFileSync('./public/viewTodo.html','utf8');
   let description =  todo.description;
   content = content.replace('TITLE',`${todo.title}`);
   content = content.replace('DESCRIPTION',`${description}`);
   let allTodoItem = Object.values(todo.toDoItems);
-  console.log(allTodoItem);
   allTodoItem = allTodoItem.reduce(toFormat,'');
   content = content.replace("ITEMS",allTodoItem);
   return content;
@@ -163,26 +157,21 @@ const getAllToDoInHtml = function (content,todo,toFormat) {
 
 const serveTodoFile = function(req,res){
   if(req.url.startsWith('/todo--')){
-    let path = `./data/${req.user.userName}.JSON`;
-    user = fs.readFileSync(path,'utf8');
-    user = JSON.parse(user);
     let url = req.url.slice(7);
     while(url.includes('%20')){
       url = url.replace('%20',' ');
     };
-    let content = fs.readFileSync('./public/viewTodo.html','utf8');
-    let todo = user.allToDo[url];
-    res.write(getAllToDoInHtml(content,todo,toHtml));
+    let todo = req.user.allToDo[url];
+    res.write(getAllToDoInHtml(todo,toHtml));
     res.end();
   }
 };
 const deleteTodo = function (req,res) {
-  let user = fs.readFileSync("./data/"+req.user.userName+".JSON",'utf8');
-  user = JSON.parse(user);
-  user.__proto__ =new User().__proto__;
-  user.removeToDoList(req.body.title);
-  user = JSON.stringify(user,null,2);
-  fs.writeFileSync("./data/"+req.user.userName+".JSON",user);
+  let users = new Users('./data');
+  req.user.removeToDoList(req.body.title);
+  users.users[req.user.userName] = req.user;
+  users = JSON.stringify(users.users,null,2);
+  fs.writeFileSync("./data/users.JSON",users);
   res.setHeader('location','/homePage.html');
   res.end();
 };

@@ -1,4 +1,5 @@
 node_modules/
 .DS_Store
 request.log
-data/
+.nyc_output
+coverage

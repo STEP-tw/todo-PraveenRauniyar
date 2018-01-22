@@ -63,15 +63,14 @@ describe('app', () => {
     });
   });
 
-  describe.skip('POST /login', () => {
+  describe('POST /login', () => {
     it('redirects to home page by setting cookie sessionid', done => {
       request(app, {
         method: 'POST',
         url: '/login',
         body: 'userName=praveen'
       }, res => {
-        sessionid = res.headers.cookie.sessionid;
-        console.log(res.headers.cookie);
+        sessionid = res.headers['Set-Cookie'][0].split('=')[1];
         th.should_be_redirected_to(res, '/homePage.html');
         th.should_have_expiring_cookie(res, 'logInFailed', 'false');
         done();
@@ -90,24 +89,7 @@ describe('app', () => {
     });
   });
 
-
-  describe.skip("Get /todo", () => {
-    it('should give todos of user ', done => {
-      let users = new Users("./data");
-      request(app, {
-        method: 'GET',
-        url: '/todo',
-        headers: {
-          'cookie': `sessionid=${sessionid}`
-        }
-      }, res => {
-        th.body_contains(res, "anjum");
-        done();
-      });
-    })
-  });
-
-  describe.skip('Post /addToDo', function() {
+  describe('Post /addToDo', function() {
     it('redirects to homepage.html with given data', done => {
       request(app, {
         method: 'POST',
@@ -123,7 +105,25 @@ describe('app', () => {
     });
   });
 
-  describe.skip("Get /toDo.html", () => {
+  describe.skip("Get /todo", () => {
+    it('should give todos of user ', done => {
+      let users = new Users("./data");
+      request(app, {
+        method: 'GET',
+        url: '/todo',
+        headers: {
+          'cookie': `sessionid=${sessionid}`
+        }
+      }, res => {
+        console.log(users);
+        th.body_contains(res,'tea');
+        done();
+      });
+    })
+  });
+
+
+  describe("Get /toDo.html", () => {
     it('should give todos of user ', done => {
       let users = new Users("./data");
       request(app, {
@@ -150,6 +150,7 @@ describe('app', () => {
         },
         body: "title=tytuijokp"
       }, res => {
+        console.log(sessionid);
         th.should_be_redirected_to(res, '/homePage.html');
         done();
       });

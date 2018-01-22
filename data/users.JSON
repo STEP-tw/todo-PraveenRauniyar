@@ -1,0 +1,42 @@
+{
+  "praveen": {
+    "userName": "praveen",
+    "password": "0000",
+    "allToDo": {
+      "sdfg": {
+        "noOfItems": 2,
+        "title": "sdfg",
+        "description": "dsfg",
+        "toDoItems": {
+          "1": {
+            "toDoItem": "sdfg",
+            "status": false
+          },
+          "2": {
+            "toDoItem": "dgf",
+            "status": false
+          }
+        }
+      },
+      "undefined": {
+        "noOfItems": 2,
+        "toDoItems": {
+          "1": {
+            "toDoItem": "sugar",
+            "status": false
+          },
+          "2": {
+            "toDoItem": "water",
+            "status": false
+          }
+        }
+      }
+    },
+    "sessionid": 1516603299591
+  },
+  "manish": {
+    "userName": "manish",
+    "password": "0000",
+    "allToDo": {}
+  }
+}
