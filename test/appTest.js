@@ -1,14 +1,25 @@
 let chai = require('chai');
 let assert = chai.assert;
 let request = require('./requestSimulator.js');
-process.env.COMMENT_STORE = "./testStore.json";
 let app = require('../app/app.js').app;
 let th = require('./testHelper.js');
 let Users = require('../models/users.js');
+const MockFileSystem = require('../app/mockFileSystem.js');
 
 let sessionid;
 
 describe('app', () => {
+  beforeEach(() => {
+    let mockfs = new MockFileSystem();
+    mockfs.addFile('./public/welcomePage.html', 'Welcome to the To Do App');
+    mockfs.addFile('./public/login.html', 'userName');
+    mockfs.addFile('./data/users.JSON', `{"praveen": {
+      "userName": "praveen",
+      "password": "0000",
+      "allToDo": {}}`);
+    mockfs.addFile('./public/viewTodo.html', 'Title  Description Add To Do Item')
+    app.fs = mockfs;
+  });
   describe('GET /bad', () => {
     it('responds with 404', done => {
       request(app, {
@@ -97,7 +108,7 @@ describe('app', () => {
         headers: {
           'cookie': `sessionid=${sessionid}`
         },
-        body: 'title=tea&discription=makingtea&toDoItem=sugar&toDoItem=water'
+        body: 'title=tea&description=makingtea&toDoItem=sugar&toDoItem=water'
       }, res => {
         th.should_be_redirected_to(res, '/homePage.html');
         done();
@@ -105,9 +116,8 @@ describe('app', () => {
     });
   });
 
-  describe.skip("Get /todo", () => {
+  describe("Get /todo", () => {
     it('should give todos of user ', done => {
-      let users = new Users("./data");
       request(app, {
         method: 'GET',
         url: '/todo',
@@ -115,32 +125,30 @@ describe('app', () => {
           'cookie': `sessionid=${sessionid}`
         }
       }, res => {
-        console.log(sessionid);
-        th.body_contains(res,'tea');
+        th.body_contains(res, 'tea');
         done();
       });
     })
   });
 
 
-  describe("Get /toDo.html", () => {
-    it('should give todos of user ', done => {
-      let users = new Users("./data");
+  describe("Get /todo--tea", () => {
+    it('should give todo of user ', done => {
       request(app, {
         method: 'GET',
-        url: '/toDo.html',
+        url: '/todo--tea',
         headers: {
           'cookie': `sessionid=${sessionid}`
         }
       }, res => {
-        th.body_contains(res, "title");
+        th.body_contains(res, "Title");
         th.body_contains(res, "Description");
         th.body_contains(res, "Add To Do Item");
         done();
       });
     })
   });
-  describe.skip('Post /deleteTodo', function() {
+  describe('Post /deleteTodo', function() {
     it('should redirect to homePage and delete the given todo', function(done) {
       request(app, {
         method: 'POST',
@@ -148,31 +156,22 @@ describe('app', () => {
         headers: {
           'cookie': `sessionid=${sessionid}`
         },
-        body: "title=tytuijokp"
+        body: "title=tea"
       }, res => {
-        th.should_be_redirected_to(res, '/homePage.html');
+        th.status_is_ok(res);
+        assert.equal(res.headers.location, '/homePage.html');
         done();
       });
-    });
-    it('now the list of todos should not have deleted todo', function(done) {
-      request(app, {
-        method: 'GET',
-        url: "/todo",
-        headers: {
-          'cookie': `sessionid=${sessionid}`
-        },
-        body: "title=anjum"
-      }, res => {
-        th.body_does_not_contain(res, "anjum");
-      });
-      done();
     });
   })
   describe('GET logout', () => {
     it('should set expiring cookies and redirect to login page ', done => {
       request(app, {
         method: 'GET',
-        url: '/logout'
+        url: '/logout',
+        headers: {
+          'cookie': `sessionid=${sessionid}`
+        }
       }, res => {
         th.should_be_redirected_to(res, '/login');
         th.should_have_expiring_cookie(res, 'loginFailed', 'false');

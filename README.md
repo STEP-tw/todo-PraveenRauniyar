@@ -1,5 +1,7 @@
 # TODO App
 
+Note: You should run node setup.js command before starting
+
 ## Objective
 
 Build a web application that helps a person maintain to-do list(s).

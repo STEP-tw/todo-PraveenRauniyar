@@ -6,7 +6,7 @@ if(!fs.existsSync('./data')){
   fs.mkdirSync('./data');
 }
 
-let users = new Users('./data');
+let users = new Users({});
 users.addUser('praveen','0000');
 users.addUser('manish','0000');
 

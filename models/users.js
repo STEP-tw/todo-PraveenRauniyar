@@ -1,31 +1,8 @@
 const User = require('./user.js');
-const fs = require('fs');
-
-const exists = function(path){
-  return fs.existsSync(path);
-};
-
-const getUserDetails = function(path){
-  if(exists(path)){
-    let usersDetails = fs.readFileSync(path,'utf8');
-    return JSON.parse(usersDetails);
-  }
-  return {};
-};
-
-const writeJsonFile = function(path,content){
-  content = JSON.stringify(content,null,2);
-  fs.writeFileSync(path,content);
-};
-
-const createFile = function(path){
-  fs.openSync(path,'w+');
-};
 
 class Users {
-  constructor(root) {
-    this.src = root;
-    this.users = getUserDetails(`${this.src}/users.JSON`) || {};
+  constructor(users) {
+    this.users = users;
   };
   getUsers(){
     return this.users;
@@ -44,7 +21,6 @@ class Users {
       }
     })
     return user;
-
   }
 
   addUser(userName,password){

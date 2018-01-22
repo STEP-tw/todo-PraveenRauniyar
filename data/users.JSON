@@ -3,70 +3,29 @@
     "userName": "praveen",
     "password": "0000",
     "allToDo": {
-      "sdfg": {
-        "noOfItems": 2,
-        "title": "sdfg",
-        "description": "dsfg",
-        "toDoItems": {
-          "1": {
-            "toDoItem": "sdfg",
-            "status": false
-          },
-          "2": {
-            "toDoItem": "dgf",
-            "status": false
-          }
-        }
-      },
-      "undefined": {
-        "noOfItems": 2,
-        "toDoItems": {
-          "1": {
-            "toDoItem": "sugar",
-            "status": false
-          },
-          "2": {
-            "toDoItem": "water",
-            "status": false
-          }
-        }
-      },
-      "sdfsdf": {
-        "noOfItems": 1,
-        "title": "sdfsdf",
-        "description": "dsgfsdg",
-        "toDoItems": {
-          "1": {
-            "toDoItem": "sdfsdf",
-            "status": false
-          }
-        }
-      },
-      "tood for test": {
+      "sfdggfs": {
         "noOfItems": 0,
-        "title": "tood for test",
-        "description": "test using cache memory",
+        "title": "sfdggfs",
+        "description": "fgdhgfdhdgfh",
         "toDoItems": {}
+      },
+      "itgiu4tgh": {
+        "noOfItems": 1,
+        "title": "itgiu4tgh",
+        "description": "u68ti",
+        "toDoItems": {
+          "1": {
+            "toDoItem": "f97iyoi",
+            "status": false
+          }
+        }
       }
     },
-    "sessionid": 1516607715848
+    "sessionid": 1516628557103
   },
   "manish": {
     "userName": "manish",
     "password": "0000",
-    "allToDo": {
-      "tea": {
-        "noOfItems": 1,
-        "title": "tea",
-        "description": "ciiki",
-        "toDoItems": {
-          "1": {
-            "toDoItem": "gtuyhfj",
-            "status": false
-          }
-        }
-      }
-    },
-    "sessionid": 1516605495672
+    "allToDo": {}
   }
 }
