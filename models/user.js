@@ -19,6 +19,16 @@ class User {
     this.allToDo[title] = toDoList;
   };
 
+  getAllToDoItems(title) {
+    return this.getSpecificToDo(title).getAllToDoItems();
+  };
+
+  editTitles(title,newTitle) {
+    this.getSpecificToDo(title).editTitles(newTitle);
+    this.allToDo[newTitle] = this.allToDo[title];
+    delete this.allToDo[title];
+  };
+
   removeToDoList(toDoTitle) {
     if (this.allToDo[toDoTitle]) {
       delete this.allToDo[toDoTitle];
@@ -29,15 +39,7 @@ class User {
     return this.allToDo[title];
   };
 
-  getAllToDoItems(title) {
-    return this.getSpecificToDo(title).getAllToDoItems();
-  };
 
-  editTitles(title,newTitle) {
-    this.getSpecificToDo(title).editTitles(newTitle);
-    this.allTodos[newTitle] = this.allTodos[title];
-    delete this.allTodo[title];
-  };
 
   addToDoItem(title, toDoText) {
     this.getSpecificToDo(title).addToDoItem(toDoText);
@@ -56,15 +58,15 @@ class User {
   };
 
   markAsDone(title, toDoItemId) {
-    this.getSpecificToDoItem(title, toDoItemId).markAsDone();
+    return this.getSpecificToDoItem(title, toDoItemId).markAsDone();
   };
 
   markAsNotDone(title, toDoItemId) {
-    this.getSpecificToDoItem(title, toDoItemId).markAsNotDone();
+    return this.getSpecificToDoItem(title, toDoItemId).markAsNotDone();
   };
 
   isDone(title, toDoItemId) {
-    this.getSpecificToDoItem(title, toDoItemId).isDone();
+    return this.getSpecificToDoItem(title, toDoItemId).isDone();
   };
   getToDoItem (title, toDoItemId) {
     return this.getSpecificToDoItem(title, toDoItemId).getToDoItem();

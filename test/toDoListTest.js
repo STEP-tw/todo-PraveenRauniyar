@@ -13,6 +13,13 @@ describe("ToDoList", function () {
     });
   });
 
+  describe("getTitle()", function () {
+    it("It should return title of toDoList", function () {
+      toDoList.editTitles("Daily working shedule")
+      assert.equal(toDoList.getTitle(), "Daily working shedule");
+    });
+  });
+
   describe("addToDoItem(toDoItemId)", function () {
     it("It should add a toDo item in a toDoList", function () {
       toDoList.addToDoItem("Lunch")
@@ -65,7 +72,19 @@ describe("ToDoList", function () {
       }
       assert.deepEqual(toDoList.getAllToDoItems(), expected);
     });
+    it("It should not edited another item if given id not found in toDoList ", function () {
+      toDoList.addToDoItem("dinner");
+      toDoList.editToDoItem(2, "Breakfast")
+      let expected = {
+        '1': {
+          toDoItem: 'dinner',
+          status: false
+        }
+      }
+      assert.deepEqual(toDoList.getAllToDoItems(), expected);
+    });
   });
+
 
   describe("getSpecificToDoItem(toDoItemId)", function () {
     it("It should return specific do Item from toDoList", function () {

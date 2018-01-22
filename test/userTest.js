@@ -45,6 +45,22 @@ describe("user", function () {
       user.removeToDoList("App")
       assert.deepEqual(user.getAllToDo(), {});
     });
+    it("It should return all todo list if given todo is not present", function () {
+      user.addToDoList("App", "createApp");
+      user.removeToDoList("Cricket")
+      assert.deepEqual(user.getAllToDoTitle(), ["App"]);
+    });
+  });
+
+  describe("editTitles(title,newTitle)", function () {
+    it("It should remove given toDoList from user toDoLists", function () {
+      user.addToDoList("App", "createApp");
+      user.addToDoList("Cricket", "Tournament");
+      console.log(user.getAllToDoTitle());
+      user.editTitles("App","creatingApp");
+      assert.notInclude(user.getAllToDoTitle(),"App");
+      assert.include(user.getAllToDoTitle(),"creatingApp");
+    });
   });
 
   describe("getSpecificToDo(title)", function () {
@@ -58,6 +74,19 @@ describe("user", function () {
         toDoItems: {}
       }
       assert.deepEqual(user.getSpecificToDo("Play"), expected);
+    });
+  });
+
+  describe("getAllToDoItems(title)", function () {
+    it("It should return all toDoItems of specific toDoList of user", function () {
+      user.addToDoList("App", "createApp");
+      user.addToDoItem("App", "Play at 10am");
+      user.addToDoItem("App", "Play at 4pm");
+      let expected = {
+        1 :{"toDoItem":"Play at 10am",status :false},
+        2 :{"toDoItem":"Play at 4pm",status :false}
+      };
+      assert.deepEqual(user.getAllToDoItems("App"), expected);
     });
   });
 
@@ -104,6 +133,15 @@ describe("user", function () {
       assert.deepEqual(user.getSpecificToDo("Cricket"), expected);
     });
   });
+  describe("editToDoItem(title,toDoId,newTodoText)", function () {
+    it("It should remove toDoItem from given toDoList of user", function () {
+      user.addToDoList("Cricket", "play");
+      user.addToDoItem("Cricket", "Play at 10am");
+      user.addToDoItem("Cricket", "rest at 11am");
+      user.editToDoItem("Cricket", 2,"rest at 12am");
+      assert.equal(user.getToDoItem("Cricket",2), "rest at 12am");
+    });
+  });
 
   describe("getSpecificToDoItem(title,toDoItemId)", function () {
     it("It should give specific toDoItem from specific toDoList of user ", function () {
@@ -117,6 +155,7 @@ describe("user", function () {
       assert.deepEqual(user.getSpecificToDoItem("Cricket", 1), expected);
     });
   });
+
   describe("getSpecificUsers()", function () {
     it("It should give specific toDoItem from specific toDoList of user ", function () {
       user.addToDoList("Cricket", "play");
@@ -127,6 +166,45 @@ describe("user", function () {
         status: false
       }
       assert.deepEqual(user.getSpecificToDoItem("Cricket", 1), expected);
+    });
+  });
+
+  describe("markAsDone()", function () {
+    it("is done should be true after mark As done of specific todo item ", function () {
+      user.addToDoList("Cricket", "play");
+      user.addToDoItem("Cricket", "Play at 10am");
+      user.addToDoItem("Cricket", "rest at 11am");
+      user.markAsDone("Cricket", 1);
+      assert.isOk(user.isDone("Cricket", 1));
+    });
+  });
+
+  describe("markAsNotDone()", function () {
+    it("isDone() should be false after mark As done of specific todo item ", function () {
+      user.addToDoList("Cricket", "play");
+      user.addToDoItem("Cricket", "Play at 10am");
+      user.addToDoItem("Cricket", "rest at 11am");
+      user.markAsNotDone("Cricket", 1);
+      assert.isNotOk(user.isDone("Cricket", 1));
+    });
+  });
+
+  describe("isDone()", function () {
+    it("isDone() should be initially false ", function () {
+      user.addToDoList("Cricket", "play");
+      user.addToDoItem("Cricket", "Play at 10am");
+      user.addToDoItem("Cricket", "rest at 11am");
+      assert.isNotOk(user.isDone("Cricket", 1));
+    });
+  });
+
+  describe("getToDoItem()", function () {
+    it("It should give todo item of specific id ", function () {
+      user.addToDoList("Cricket", "play");
+      user.addToDoItem("Cricket", "Play at 10am");
+      user.addToDoItem("Cricket", "rest at 11am");
+      assert.equal(user.getToDoItem("Cricket", 1),"Play at 10am");
+      assert.equal(user.getToDoItem("Cricket", 2),"rest at 11am");
     });
   });
 });

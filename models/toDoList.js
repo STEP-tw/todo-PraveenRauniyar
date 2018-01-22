@@ -10,7 +10,7 @@ class ToDoList {
     return this.title;
   };
   editTitles(newTitle) {
-    this.title = newTitle;
+    return this.title = newTitle;
   };
   getAllToDoItems() {
     return this.toDoItems;
