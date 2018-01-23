@@ -116,6 +116,22 @@ describe('app', () => {
     });
   });
 
+  describe('Post /addToDo', function() {
+    it('redirects to homepage.html with given data if title has space', done => {
+      request(app, {
+        method: 'POST',
+        url: '/addToDo',
+        headers: {
+          'cookie': `sessionid=${sessionid}`
+        },
+        body: 'title=tea%20and%20Water&description=makingtea&toDoItem=sugar'
+      }, res => {
+        th.should_be_redirected_to(res, '/homePage.html');
+        done();
+      });
+    });
+  });
+
   describe("Get /todo", () => {
     it('should give todos of user ', done => {
       request(app, {
@@ -126,6 +142,7 @@ describe('app', () => {
         }
       }, res => {
         th.body_contains(res, 'tea');
+        th.body_contains(res, 'tea and Water');
         done();
       });
     })
@@ -147,6 +164,20 @@ describe('app', () => {
         done();
       });
     })
+      it('should give todo when title has space', done => {
+        request(app, {
+          method: 'GET',
+          url: '/todo--tea%20and%20Water',
+          headers: {
+            'cookie': `sessionid=${sessionid}`
+          }
+        }, res => {
+          th.body_contains(res, "Title");
+          th.body_contains(res, "Description");
+          th.body_contains(res, "Add To Do Item");
+          done();
+        });
+    })
   });
   describe('Post /deleteTodo', function() {
     it('should redirect to homePage and delete the given todo', function(done) {
@@ -164,7 +195,7 @@ describe('app', () => {
       });
     });
   })
-  describe('GET logout', () => {
+  describe('GET /logout', () => {
     it('should set expiring cookies and redirect to login page ', done => {
       request(app, {
         method: 'GET',

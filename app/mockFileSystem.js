@@ -18,6 +18,10 @@ class MockFileSystem {
   writeFileSync(fileName,content){
     this.files[fileName] = content;
   }
+  appendFile(fileName,content){
+    let prev = this.files[fileName] || '';
+    this.files[fileName] = prev + content;
+  }
 }
 
 module.exports = MockFileSystem;

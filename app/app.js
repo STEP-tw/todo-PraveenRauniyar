@@ -8,14 +8,23 @@ const Users = require('../models/users.js');
 let app = WebApp.create();
 app.fs = fs;
 
+const writeFile =function (content) {
+  app.fs.writeFileSync('./data/users.JSON',content);
+};
 
-const getUsers = function(){
-  let userData = app.fs.readFileSync('./data/users.JSON','utf8');
+const readFile = function (path,encoding) {
+  return app.fs.readFileSync(path , encoding);
+};
+
+const getUsers = function() {
+  let userData = readFile('./data/users.JSON', 'utf8');
   return new Users(JSON.parse(userData));
 }
 
 let users = getUsers();
+
 let toS = o => JSON.stringify(o, null, 2);
+
 let logRequest = (req, res) => {
   let text = ['------------------------------',
     `${timeStamp()}`,
@@ -24,68 +33,57 @@ let logRequest = (req, res) => {
     `COOKIES=> ${toString(req.cookies)}`,
     `BODY=> ${toString(req.body)}`, ''
   ].join('\n');
-  fs.appendFile('request.log', text, () => {});
+  app.fs.appendFile('request.log', text, () => {});
 };
 
-const getUser = function(field,value){
-  let user = users.getSpecificUser(field,value);
-  return user;
-}
-
-let loadUser = (req,res) => {
+const loadUser = (req, res) => {
   let sessionid = req.cookies.sessionid;
-  let user = users.getSpecificUser('sessionid',sessionid);
+  let user = users.getSpecificUser('sessionid', sessionid);
   if (sessionid && user) {
     user.__proto__ = new User().__proto__;
     req.user = user;
   };
 };
 
-let redirectLoggedInUserToHome = (req, res) => {
-  if (req.urlIsOneOf(['/login']) && req.user) res.redirect('homePage.html');
-};
-
-let redirectLoggedOutUserToLogin = (req, res) => {
-  if (req.urlIsOneOf(['/logout']) && !req.user) res.redirect('/login');
+const redirectLoggedInUserToHome = (req, res) => {
+  if (req.urlIsOneOf(['/login']) && req.user) res.redirect('/homePage.html');
 };
 
 const getLoginPage = function(req, res) {
   if (req.cookies.logInFailed)
     res.write('<p>logIn Failed</p>');
   let filePath = "./public/login.html";
-  let loginPageContent = app.fs.readFileSync(filePath, "utf8");
+  let loginPageContent = readFile(filePath, "utf8");
   res.write(loginPageContent);
 };
 
 const serveLogin = function(req, res) {
-  if (req.user) {
-    res.redirect('/homePage.html');
-    return;
-  };
   res.setHeader('Content-type', "text/html");
-  getLoginPage.call(this,req, res);
+  getLoginPage(req, res);
   res.end();
 };
 
+const setHeaderAndRedirect = function(res, headers, redirectPath) {
+  res.setHeader("Set-Cookie", headers);
+  res.redirect(redirectPath);
+};
+
 const postLoginPage = function(req, res) {
-  let user = getUser("userName",req.body.userName);
+  let user = users.getSpecificUser("userName", req.body.userName);
   if (!user) {
-    res.setHeader('Set-Cookie', `logInFailed=true`);
-    res.redirect('/login');
+    setHeaderAndRedirect(res, `logInFailed=true`, '/login')
     return;
   };
   let sessionid = new Date().getTime();
-  res.setHeader('Set-Cookie', [`sessionid=${sessionid}`,`logInFailed=false;Max-Age=5`]);
+  setHeaderAndRedirect(res, [`sessionid=${sessionid}`, `logInFailed=false;Max-Age=5`], '/homePage.html');
   user.sessionid = sessionid;
   users.users[user.userName] = user;
-  app.fs.writeFileSync('./data/users.JSON',toS(users.users));
-  res.redirect('/homePage.html');
+  writeFile(toS(users.users));
 };
 
-const serveLogout = function(req,res) {
-  res.setHeader('Set-Cookie', [`loginFailed=false;Max-Age=5`, `sessionid=0;Max-Age=5`]);
-  res.redirect('/login');
-  app.fs.writeFileSync('./data/users.JSON',toS(users.users));
+const serveLogout = function(req, res) {
+  setHeaderAndRedirect(res, [`loginFailed=false;Max-Age=5`, `sessionid=0;Max-Age=5`], '/login');
+  writeFile(toS(users.users));
 };
 
 const getFilePath = function(req) {
@@ -104,7 +102,7 @@ const responseError = function(res) {
 const serverStaticFiles = function(req, res) {
   let filePath = getFilePath(req);
   if (app.fs.existsSync(filePath)) {
-    let fileContents = app.fs.readFileSync(filePath)
+    let fileContents = readFile(filePath)
     res.setHeader('Content-type', setContentType(filePath));
     res.write(fileContents);
     res.end();
@@ -113,100 +111,99 @@ const serverStaticFiles = function(req, res) {
   };
 };
 
-const addToDo = function (title,description,toDoItem,user) {
-  user.addToDoList(title,description);
-  toDoItem.forEach(function (item) {
-    user.addToDoItem(title,item);
+const addToDo = function(title, description, toDoItem, user) {
+  user.addToDoList(title, description);
+  toDoItem.forEach(function(item) {
+    user.addToDoItem(title, item);
   });
   users.users[user.userName] = user;
-  let todoPath = `./data/users.JSON`;
-  app.fs.writeFileSync(todoPath,toS(users.users));
+  writeFile(toS(users.users));
 };
 
 const postToDoPage = function(req, res) {
   let title = req.body.title;
   let description = req.body.description;
   let toDoItem = req.body.toDoItem || [];
-  if(typeof(toDoItem)=='string'){
+  if (typeof(toDoItem) == 'string') {
     toDoItem = [toDoItem];
   }
-  addToDo(title,description,toDoItem,req.user);
+  addToDo(title, description, toDoItem, req.user);
   res.redirect('/homePage.html');
 };
 
-const serveListOfTodos = function (req, res) {
+const serveListOfTodos = function(req, res) {
   let listOfTodos = req.user.getAllToDoTitle();
   res.write(listOfTodos.toString());
   res.end();
 }
 
 
-const toFormInput = function (content,item) {
-  return `<input type ="text" name = "item"
-  value = ${item.toDoItem}><br/>`;
-};
+// const toFormInput = function(content, item) {
+//   return `<input type ="text" name = "item"
+//   value = ${item.toDoItem}><br/>`;
+// };
 
-const toHtml = function(content,item,itemid){
+const toHtml = function(content, item, itemid) {
   return `<input type = "checkbox" id = "${itemid}"/ onclick = "changeStatus()"/>
   <big>${item.toDoItem}</big>
   <br/>`;
 };
 
-const getAllToDoInHtml = function (content,todo,toFormat) {
-  let description =  todo.description;
-  content = content.replace('TITLE',`${todo.title}`);
-  content = content.replace('DESCRIPTION',`${description}`);
+const getAllToDoInHtml = function(content, todo, toFormat) {
+  content = content.replace('TITLE', `${todo.title}`);
+  content = content.replace('DESCRIPTION', `${todo.description}`);
   let allTodoItem = Object.values(todo.toDoItems || {});
-  let itemid = 0, itemsInHtmlForm = '';
-  allTodoItem.forEach((item)=>{
-    itemsInHtmlForm += toFormat(itemsInHtmlForm,item,++itemid);
+  let itemid = 0;
+  let itemsInHtmlForm = '';
+  allTodoItem.forEach((item) => {
+    itemsInHtmlForm += toFormat(itemsInHtmlForm, item, ++itemid);
   })
-  content = content.replace("ITEMS",itemsInHtmlForm);
+  content = content.replace("ITEMS", itemsInHtmlForm);
   return content;
 };
 
-const serveTodoFile = function(req,res){
-  if(req.url.startsWith('/todo--')){
+const serveTodoFile = function(req, res) {
+  if (req.url.startsWith('/todo--')) {
     let url = req.url.slice(7);
-    while(url.includes('%20')){
-      url = url.replace('%20',' ');
+    while (url.includes('%20')) {
+      url = url.replace('%20', ' ');
     };
     let todo = req.user.allToDo[url];
-    let content = app.fs.readFileSync('./public/viewTodo.html','utf8');
-    res.write(getAllToDoInHtml(content,todo,toHtml));
+    let content = readFile('./public/viewTodo.html', 'utf8');
+    res.write(getAllToDoInHtml(content, todo, toHtml));
     res.end();
   }
 };
-const deleteTodo = function (req,res) {
+const deleteTodo = function(req, res) {
   req.user.removeToDoList(req.body.title);
   users.users[req.user.userName] = req.user;
-  let usersData = JSON.stringify(users.users,null,2);
-  app.fs.writeFileSync("./data/users.JSON",usersData);
-  res.setHeader('location','/homePage.html');
+  let usersData = toS(users.users);
+  writeFile("./data/users.JSON", usersData);
+  res.setHeader('location', '/homePage.html');
   res.end();
 };
 
-const editTodo = function(req,res){
-  if(req.url.startsWith('/editTodo')){
-    let content = app.fs.readFileSync('./public/edit_todo.html','utf8');
-    let title = req.url.slice(9);
-    let todo = req.user.getSpecificToDo(title);
-    res.write(getAllToDoInHtml(content,todo,toHtml));
-    res.end();
-  }
-}
+// const editTodo = function(req, res) {
+//   if (req.url.startsWith('/editTodo')) {
+//     let content = readFile('./public/edit_todo.html', 'utf8');
+//     let title = req.url.slice(9);
+//     let todo = req.user.getSpecificToDo(title);
+//     res.write(getAllToDoInHtml(content, todo, toHtml));
+//     res.end();
+//   }
+// }
 
 
 app.use(logRequest);
 app.use(loadUser);
 app.use(serveTodoFile);
 app.use(redirectLoggedInUserToHome);
-app.use(editTodo);
+// app.use(editTodo);
 app.get('/login', serveLogin);
 app.get('/todo', serveListOfTodos);
 app.post('/login', postLoginPage);
 app.post('/addToDo', postToDoPage);
 app.get('/logout', serveLogout);
 app.postUse(serverStaticFiles);
-app.post("/deleteTodo",deleteTodo);
+app.post("/deleteTodo", deleteTodo);
 exports.app = app;

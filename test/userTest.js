@@ -56,7 +56,6 @@ describe("user", function () {
     it("It should remove given toDoList from user toDoLists", function () {
       user.addToDoList("App", "createApp");
       user.addToDoList("Cricket", "Tournament");
-      console.log(user.getAllToDoTitle());
       user.editTitles("App","creatingApp");
       assert.notInclude(user.getAllToDoTitle(),"App");
       assert.include(user.getAllToDoTitle(),"creatingApp");
