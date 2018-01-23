@@ -4,6 +4,7 @@ const setContentType = require("./content_type.js").setContentType;
 const timeStamp = require('./time.js').timeStamp;
 const User = require('../models/user.js');
 const Users = require('../models/users.js');
+const Todo = require('../models/toDoList.js');
 
 let app = WebApp.create();
 app.fs = fs;
@@ -144,9 +145,13 @@ const serveListOfTodos = function(req, res) {
 // };
 
 const toHtml = function(content, item, itemid) {
-  return `<input type = "checkbox" id = "${itemid}"/ onclick = "changeStatus()"/>
-  <big>${item.toDoItem}</big>
-  <br/>`;
+  let checked = "";
+  if(item.status){
+    checked = "checked";
+  }
+  return `${itemid}. <big>${item.toDoItem}</big>
+    &nbsp&nbsp<input type = "checkbox" ${checked} id = "${itemid}"
+   onclick = "changeStatus(event)"/><br/>`;
 };
 
 const getAllToDoInHtml = function(content, todo, toFormat) {
@@ -177,8 +182,7 @@ const serveTodoFile = function(req, res) {
 const deleteTodo = function(req, res) {
   req.user.removeToDoList(req.body.title);
   users.users[req.user.userName] = req.user;
-  let usersData = toS(users.users);
-  writeFile("./data/users.JSON", usersData);
+  writeFile(toS(users.users));
   res.setHeader('location', '/homePage.html');
   res.end();
 };
@@ -193,6 +197,19 @@ const deleteTodo = function(req, res) {
 //   }
 // }
 
+const changeStatus = function (req,res) {
+  let todo = req.user.getSpecificToDo(req.body.title);
+  todo.__proto__ = new Todo().__proto__;
+  if(req.body.status == 'true'){
+    todo.markAsDone(req.body.id);
+  } else{
+    todo.markAsNotDone(req.body.id);
+  }
+  res.write("hello");
+  users[req.user.userName] = req.user;
+  writeFile(toS(users.users));
+  res.end();
+}
 
 app.use(logRequest);
 app.use(loadUser);
@@ -202,6 +219,7 @@ app.use(redirectLoggedInUserToHome);
 app.get('/login', serveLogin);
 app.get('/todo', serveListOfTodos);
 app.post('/login', postLoginPage);
+app.post('/changeStatus', changeStatus);
 app.post('/addToDo', postToDoPage);
 app.get('/logout', serveLogout);
 app.postUse(serverStaticFiles);

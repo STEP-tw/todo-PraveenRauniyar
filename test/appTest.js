@@ -9,8 +9,9 @@ const MockFileSystem = require('../app/mockFileSystem.js');
 let sessionid;
 
 describe('app', () => {
+  let mockfs;
   beforeEach(() => {
-    let mockfs = new MockFileSystem();
+    mockfs = new MockFileSystem();
     mockfs.addFile('./public/welcomePage.html', 'Welcome to the To Do App');
     mockfs.addFile('./public/login.html', 'userName');
     mockfs.addFile('./data/users.JSON', `{"praveen": {
@@ -178,6 +179,21 @@ describe('app', () => {
           done();
         });
     })
+  });
+  describe('changeStatus', function() {
+    it('should change the status of given item after checked ', done => {
+      request(app, {
+        method: 'POST',
+        url: '/todo--tea',
+        headers: {
+          'cookie': `sessionid=${sessionid}`
+        },
+        body:"title=tea&id=1&status=true"
+      }, res => {
+        th.status_is_ok(res);
+        done();
+      });
+    });
   });
   describe('Post /deleteTodo', function() {
     it('should redirect to homePage and delete the given todo', function(done) {

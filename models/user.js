@@ -39,8 +39,6 @@ class User {
     return this.allToDo[title];
   };
 
-
-
   addToDoItem(title, toDoText) {
     this.getSpecificToDo(title).addToDoItem(toDoText);
   };

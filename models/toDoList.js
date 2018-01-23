@@ -36,6 +36,12 @@ class ToDoList {
   getSpecificToDoItem(toDoItemId) {
     return this.toDoItems[toDoItemId];
   };
+  markAsDone(toDoItemId) {
+    return this.getSpecificToDoItem(toDoItemId).status = true;
+  };
+  markAsNotDone(toDoItemId) {
+    return this.getSpecificToDoItem(toDoItemId).status = false;
+  };
 };
 
 module.exports = ToDoList;
