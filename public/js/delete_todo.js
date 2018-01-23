@@ -33,5 +33,6 @@ const editRequest = function(){
 const addListeners = function(){
   document.getElementById('delete').onclick = createRequest;
   document.getElementById('edit').onclick = editRequest;
+  document.getElementById('addTodoItem').onclick = addInputBox;
 }
 window.onload = addListeners;

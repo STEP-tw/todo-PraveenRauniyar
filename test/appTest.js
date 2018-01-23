@@ -180,6 +180,7 @@ describe('app', () => {
         });
     })
   });
+
   describe('changeStatus', function() {
     it('should change the status of given item after checked ', done => {
       request(app, {
@@ -191,6 +192,22 @@ describe('app', () => {
         body:"title=tea&id=1&status=true"
       }, res => {
         th.status_is_ok(res);
+        done();
+      });
+    });
+  });
+  describe.skip('addItem', function() {
+    it('should add item', done => {
+      request(app, {
+        method: 'POST',
+        url: '/addItem',
+        headers: {
+          'cookie': `sessionid=${sessionid}`
+        },
+        body:"title=tea&&toDoItem=sugar&toDoItem=water"
+      }, res => {
+        th.status_is_ok(res);
+        th.should_be_redirected_to(res,"/viewTodo.html");
         done();
       });
     });
