@@ -7,7 +7,7 @@ let request = function(app,options,onComplete){
   req.url = options.url;
   req.headers = options.headers||{};
   let res={
-    end:()=>{
+    send:()=>{
       res.finished = true;
       let result = {
         statusCode:res.statusCode||200,

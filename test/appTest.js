@@ -21,12 +21,13 @@ describe('app', () => {
     mockfs.addFile('./public/viewTodo.html', 'Title  Description Add To Do Item')
     app.fs = mockfs;
   });
-  describe('GET /bad', () => {
+  describe.only('GET /bad', () => {
     it('responds with 404', done => {
       request(app, {
         method: 'GET',
         url: '/bad'
       }, (res) => {
+        console.log(res);
         assert.equal(res.statusCode, 404);
         done();
       });

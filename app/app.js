@@ -1,12 +1,16 @@
 let fs = require('fs');
-const WebApp = require('./webapp');
+const express = require('express');
+const toHtml =require("./toHtml.js").toHtml;
+const getAllToDoInHtml =require("./toHtml.js").getAllToDoInHtml;
+const querystring = require('querystring');
+const getCookies = require('./webapp').getCookies;
 const setContentType = require("./content_type.js").setContentType;
 const timeStamp = require('./time.js').timeStamp;
 const User = require('../models/user.js');
 const Users = require('../models/users.js');
 const Todo = require('../models/toDoList.js');
 
-let app = WebApp.create();
+let app = express();
 app.fs = fs;
 
 const writeFile =function (content) {
@@ -26,7 +30,7 @@ let users = getUsers();
 
 let toS = o => JSON.stringify(o, null, 2);
 
-let logRequest = (req, res) => {
+let logRequest = (req, res,next) => {
   let text = ['------------------------------',
     `${timeStamp()}`,
     `${req.method} ${req.url}`,
@@ -34,27 +38,29 @@ let logRequest = (req, res) => {
     `COOKIES=> ${toString(req.cookies)}`,
     `BODY=> ${toString(req.body)}`, ''
   ].join('\n');
-  app.fs.appendFile('request.log', text, () => {});
+  app.fs.appendFile('request.log', text,next);
 };
 
-const loadUser = (req, res) => {
-  let sessionid = req.cookies.sessionid;
+const loadUser = (req, res,next) => {
+  let sessionid = req.cookies && req.cookies.sessionid;
   let user = users.getSpecificUser('sessionid', sessionid);
   if (sessionid && user) {
     user.__proto__ = new User().__proto__;
     req.user = user;
   };
+  next();
 };
 
 const redirectLoggedInUserToHome = (req, res) => {
   if (req.urlIsOneOf(['/login']) && req.user) res.redirect('/homePage.html');
 };
 
-const getLoginPage = function(req, res) {
-  if (req.cookies.logInFailed)
-    res.write('<p>logIn Failed</p>');
-  let filePath = "./public/login.html";
+const getLoginPage = function(req,res) {
+  if (req.cookies && req.cookies.logInFailed){
+    let filePath = "./public/login.html";
+  }
   let loginPageContent = readFile(filePath, "utf8");
+  res.write('<p>logIn Failed</p>');
   res.write(loginPageContent);
 };
 
@@ -64,26 +70,29 @@ const serveLogin = function(req, res) {
   res.end();
 };
 
-const setHeaderAndRedirect = function(res, headers, redirectPath) {
-  res.setHeader("Set-Cookie", headers);
-  res.redirect(redirectPath);
-};
+const handleIfNotUser = function (res) {
+  res.cookie('logInFailed','true');
+  res.redirect('/login');
+  return;
+}
 
-const postLoginPage = function(req, res) {
+const postLoginPage = function(req,res) {
   let user = users.getSpecificUser("userName", req.body.userName);
   if (!user) {
-    setHeaderAndRedirect(res, `logInFailed=true`, '/login')
-    return;
+    handleIfNotUser(res);
   };
-  let sessionid = new Date().getTime();
-  setHeaderAndRedirect(res, [`sessionid=${sessionid}`, `logInFailed=false;Max-Age=5`], '/homePage.html');
-  user.sessionid = sessionid;
+  user.sessionid = new Date().getTime();
+  res.cookie('logInFailed','false',{maxAge: 5,httpOnly: false,signed: false});
+  res.cookie('sessionid',user.sessionid);
+  res.redirect('/homePage.html');
   users.users[user.userName] = user;
   writeFile(toS(users.users));
 };
 
 const serveLogout = function(req, res) {
-  setHeaderAndRedirect(res, [`loginFailed=false;Max-Age=5`, `sessionid=0;Max-Age=5`], '/login');
+  res.cookie('loginFailed','false',{ maxAge: 5});
+  res.cookie('sessionid','0',{maxAge:5})
+  res.redirect("/login");
   writeFile(toS(users.users));
 };
 
@@ -92,24 +101,6 @@ const getFilePath = function(req) {
     return `./public/welcomePage.html`;
   };
   return `./public${req.url}`;
-};
-
-const responseError = function(res) {
-  res.statusCode = 404;
-  res.write('file not found');
-  res.end();
-};
-
-const serverStaticFiles = function(req, res) {
-  let filePath = getFilePath(req);
-  if (app.fs.existsSync(filePath)) {
-    let fileContents = readFile(filePath)
-    res.setHeader('Content-type', setContentType(filePath));
-    res.write(fileContents);
-    res.end();
-  } else {
-    responseError(res);
-  };
 };
 
 const addToDo = function(title, description, toDoItem, user) {
@@ -138,90 +129,65 @@ const serveListOfTodos = function(req, res) {
   res.end();
 }
 
-
-// const toFormInput = function(content, item) {
-//   return `<input type ="text" name = "item"
-//   value = ${item.toDoItem}><br/>`;
-// };
-
-const toHtml = function(content, item, itemid) {
-  let checked = "";
-  if(item.status){
-    checked = "checked";
-  }
-  return `${itemid}. <big>${item.toDoItem}</big>
-    &nbsp&nbsp<input type = "checkbox" ${checked} id = "${itemid}"
-   onclick = "changeStatus(event)"/><br/>`;
+const serveTodoFile = function(req,res) {
+  let content = readFile('./public/viewTodo.html', 'utf8');
+  let title = req.params.title;
+  while (title.includes('%20')){
+    title = title.replace('%20', ' ');
+  };
+  let todo = req.user.allToDo[title];
+  content = getAllToDoInHtml(content, todo, toHtml);
+  res.send(content);
 };
 
-const getAllToDoInHtml = function(content, todo, toFormat) {
-  content = content.replace('TITLE', `${todo.title}`);
-  content = content.replace('DESCRIPTION', `${todo.description}`);
-  let allTodoItem = Object.values(todo.toDoItems || {});
-  let itemid = 0;
-  let itemsInHtmlForm = '';
-  allTodoItem.forEach((item) => {
-    itemsInHtmlForm += toFormat(itemsInHtmlForm, item, ++itemid);
-  })
-  content = content.replace("ITEMS", itemsInHtmlForm);
-  return content;
-};
-
-const serveTodoFile = function(req, res) {
-  if (req.url.startsWith('/todo--')) {
-    let url = req.url.slice(7);
-    while (url.includes('%20')) {
-      url = url.replace('%20', ' ');
-    };
-    let todo = req.user.allToDo[url];
-    let content = readFile('./public/viewTodo.html', 'utf8');
-    res.write(getAllToDoInHtml(content, todo, toHtml));
-    res.end();
-  }
-};
-const deleteTodo = function(req, res) {
-  req.user.removeToDoList(req.body.title);
+const deleteTodo = function(req,res) {
+  req.user.removeToDoList(req.params.title);
   users.users[req.user.userName] = req.user;
   writeFile(toS(users.users));
   res.setHeader('location', '/homePage.html');
   res.end();
 };
 
-// const editTodo = function(req, res) {
-//   if (req.url.startsWith('/editTodo')) {
-//     let content = readFile('./public/edit_todo.html', 'utf8');
-//     let title = req.url.slice(9);
-//     let todo = req.user.getSpecificToDo(title);
-//     res.write(getAllToDoInHtml(content, todo, toHtml));
-//     res.end();
-//   }
-// }
-
 const changeStatus = function (req,res) {
-  let todo = req.user.getSpecificToDo(req.body.title);
+  let todo = req.user.getSpecificToDo(req.params.title);
   todo.__proto__ = new Todo().__proto__;
   if(req.body.status == 'true'){
     todo.markAsDone(req.body.id);
   } else{
     todo.markAsNotDone(req.body.id);
   }
-  res.write("hello");
   users[req.user.userName] = req.user;
   writeFile(toS(users.users));
   res.end();
 }
 
+const parseBody = function (req,res,next) {
+  let content = "";
+  req.on('data', data => content += data.toString());
+  req.on('end', () => {
+    req.body = querystring.parse(content);
+    next();
+  });
+};
+
+app.use(getCookies);
 app.use(logRequest);
 app.use(loadUser);
-app.use(serveTodoFile);
-app.use(redirectLoggedInUserToHome);
-// app.use(editTodo);
+app.use(parseBody);
+// app.use(redirectLoggedInUserToHome);
+app.get('/',(req,res,next)=>{
+  req.url = '/welcomePage.html';
+  next();
+});
+
+app.use(express.static('public'));
+
 app.get('/login', serveLogin);
-app.get('/todo', serveListOfTodos);
-app.post('/login', postLoginPage);
-app.post('/changeStatus', changeStatus);
+app.post('/login',postLoginPage);
+app.get('/todolist', serveListOfTodos);
+app.post('/changeStatus/:title', changeStatus);
 app.post('/addToDo', postToDoPage);
 app.get('/logout', serveLogout);
-app.postUse(serverStaticFiles);
-app.post("/deleteTodo", deleteTodo);
+app.get('/todo/:title',serveTodoFile);
+app.get("/delete/:title", deleteTodo);
 exports.app = app;

@@ -10,10 +10,10 @@ const getTitle = ()=>{
 
 const createRequest = function() {
   let deleteReq = new XMLHttpRequest();
-  deleteReq.open('POST','/deleteTodo');
+  deleteReq.open('GET',`/delete/${getTitle()}`);
   deleteReq.setRequestHeader('location','/');
   deleteReq.addEventListener('load',handleResponse);
-  deleteReq.send(`title=${getTitle()}`);
+  deleteReq.send();
 }
 
 const showFormToEdit = function(){
@@ -24,7 +24,7 @@ const showFormToEdit = function(){
 const editRequest = function(){
   let editReq = new XMLHttpRequest();
   let title = document.getElementById('id')
-  editReq.open('GET',`/editTodo${getTitle()}`);
+  editReq.open('GET',`/editTodo/${getTitle()}`);
   editReq.addEventListener('load',showFormToEdit);
   editReq.send();
 

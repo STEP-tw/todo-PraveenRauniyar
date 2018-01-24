@@ -102,4 +102,10 @@ let create = () => {
   rh.postUse = postUse;
   return rh;
 };
-exports.create = create;
+
+const getCookies = (req,res,next)=>{
+  req.cookies = parseCookies(req.headers.cookie || '');
+  next();
+}
+
+exports.getCookies = getCookies;

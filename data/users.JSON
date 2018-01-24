@@ -2,26 +2,8 @@
   "praveen": {
     "userName": "praveen",
     "password": "0000",
-    "allToDo": {
-      "sfdggfs": {
-        "noOfItems": 0,
-        "title": "sfdggfs",
-        "description": "fgdhgfdhdgfh",
-        "toDoItems": {}
-      },
-      "itgiu4tgh": {
-        "noOfItems": 1,
-        "title": "itgiu4tgh",
-        "description": "u68ti",
-        "toDoItems": {
-          "1": {
-            "toDoItem": "f97iyoi",
-            "status": true
-          }
-        }
-      }
-    },
-    "sessionid": 1516685558307
+    "allToDo": {},
+    "sessionid": 1516782892036
   },
   "manish": {
     "userName": "manish",
