@@ -3,7 +3,7 @@ const express = require('express');
 const toHtml =require("./toHtml.js").toHtml;
 const getAllToDoInHtml =require("./toHtml.js").getAllToDoInHtml;
 const querystring = require('querystring');
-const getCookies = require('./webapp').getCookies;
+const getCookies = require('./parseCookies.js').getCookies;
 const setContentType = require("./content_type.js").setContentType;
 const timeStamp = require('./time.js').timeStamp;
 const User = require('../models/user.js');
@@ -51,16 +51,17 @@ const loadUser = (req, res,next) => {
   next();
 };
 
-const redirectLoggedInUserToHome = (req, res) => {
-  if (req.urlIsOneOf(['/login']) && req.user) res.redirect('/homePage.html');
+const redirectLoggedInUserToHome = (req, res,next) => {
+  if (req.url == '/login' && req.user) res.redirect('/homePage.html');
+  next();
 };
 
 const getLoginPage = function(req,res) {
   if (req.cookies && req.cookies.logInFailed){
-    let filePath = "./public/login.html";
+    res.write('<p>logIn Failed</p>');
   }
+  let filePath = "./public/login.html";
   let loginPageContent = readFile(filePath, "utf8");
-  res.write('<p>logIn Failed</p>');
   res.write(loginPageContent);
 };
 
@@ -170,18 +171,20 @@ const parseBody = function (req,res,next) {
   });
 };
 
+const dealWithSlash = function (req,res,next) {
+  req.url = '/welcomePage.html';
+  next();
+};
+
+// ==============================================================
+
 app.use(getCookies);
 app.use(logRequest);
 app.use(loadUser);
 app.use(parseBody);
-// app.use(redirectLoggedInUserToHome);
-app.get('/',(req,res,next)=>{
-  req.url = '/welcomePage.html';
-  next();
-});
-
+app.use(redirectLoggedInUserToHome);
+app.get('/',dealWithSlash);
 app.use(express.static('public'));
-
 app.get('/login', serveLogin);
 app.post('/login',postLoginPage);
 app.get('/todolist', serveListOfTodos);

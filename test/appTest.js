@@ -21,7 +21,7 @@ describe('app', () => {
     mockfs.addFile('./public/viewTodo.html', 'Title  Description Add To Do Item')
     app.fs = mockfs;
   });
-  describe.only('GET /bad', () => {
+  describe('GET /bad', () => {
     it('responds with 404', done => {
       request(app, {
         method: 'GET',
