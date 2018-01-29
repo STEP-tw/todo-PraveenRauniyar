@@ -35,10 +35,14 @@ class ToDoList {
     return this.toDoItems[toDoItemId];
   };
   markAsDone(toDoItemId) {
-    return this.getSpecificToDoItem(toDoItemId).status = true;
+    if (this.toDoItems[toDoItemId]){
+      return this.getSpecificToDoItem(toDoItemId).status = true;
+    }
   };
   markAsNotDone(toDoItemId) {
-    return this.getSpecificToDoItem(toDoItemId).status = false;
+    if (this.toDoItems[toDoItemId]){
+      return this.getSpecificToDoItem(toDoItemId).status = false;
+    };
   };
 };
 

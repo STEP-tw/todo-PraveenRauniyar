@@ -179,6 +179,17 @@ describe('app', () => {
     });
   });
 
+  describe('Post /deleteItem', function() {
+    it('should redirect to homePage and delete the given todo', function(done) {
+      request(app)
+      .post("/deleteItem/tea")
+      .set('cookie', `sessionid=${sessionid}`)
+      .send("id=1")
+      .expect(200)
+      .end(done)
+      });
+    });
+
   describe('Post /deleteTodo', function() {
     it('should redirect to homePage and delete the given todo', function(done) {
       request(app)

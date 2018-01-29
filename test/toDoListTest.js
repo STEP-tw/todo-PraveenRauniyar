@@ -105,4 +105,11 @@ describe("ToDoList", function () {
       assert.deepEqual(toDoList.getSpecificToDoItem(2), expected);
     });
   });
+
+  describe("markAsNotDone(toDoItemId)", function () {
+    it("status should be false after marking a toDoItem as not done", function () {
+      toDoList.addToDoItem("dinner");
+      assert.isNotOk(toDoList.markAsNotDone(1));
+    });
+  });
 });

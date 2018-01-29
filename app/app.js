@@ -147,7 +147,7 @@ const deleteTodo = function(req,res) {
 const changeStatus = function (req,res) {
   let todo = req.user.getSpecificToDo(req.params.title);
   todo.__proto__ = new Todo().__proto__;
-  if(req.body.status){
+  if(eval(req.body.status)){
     todo.markAsDone(req.body.id);
   } else{
     todo.markAsNotDone(req.body.id);

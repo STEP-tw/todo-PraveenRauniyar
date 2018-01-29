@@ -1,22 +1,24 @@
-const toHtml = function(content, item, itemid) {
+const toHtml = function(content, item, serialNumber, itemId) {
   let checked = "";
   if(item.status){
     checked = "checked";
   }
-  return `<br><br>${itemid}. <big>${item.toDoItem}</big>
-    &nbsp&nbsp<input type = "checkbox" ${checked} id = "${itemid}"
+  return `<br><br>${serialNumber}. <big>${item.toDoItem}</big>
+    &nbsp&nbsp<input type = "checkbox" ${checked} id = "${itemId}"
    onclick = "changeStatus(event)"/>&nbsp &nbsp &nbsp &nbsp
-   <button id="${itemid}"  onclick = "deleteItem(event)">Delete This Item</button> `;
+   <button id="${itemId}"  onclick = "deleteItem(event)">Delete This Item</button> `;
 };
 
 const getAllToDoInHtml = function(content, todo, toFormat) {
   content = content.replace('TITLE', `${todo.title}`);
   content = content.replace('DESCRIPTION', `${todo.description}`);
   let allTodoItem = Object.values(todo.toDoItems || {});
-  let itemid = 0;
+  let serialNumber = 0;
+  let allItemId = Object.keys(todo.toDoItems)
   let itemsInHtmlForm = '';
   allTodoItem.forEach((item) => {
-    itemsInHtmlForm += toFormat(itemsInHtmlForm, item, ++itemid);
+    let itemId = allItemId[serialNumber];
+    itemsInHtmlForm += toFormat(itemsInHtmlForm, item, ++serialNumber,itemId);
   })
   content = content.replace("ITEMS", itemsInHtmlForm);
   return content;
