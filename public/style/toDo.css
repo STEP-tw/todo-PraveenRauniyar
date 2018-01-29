@@ -23,19 +23,23 @@ body {
 }
 
 .Header-Part {
-  height: 150px;
-  width: 1600px;
+  height: 100px;
+  width: 1300px;
   border-bottom: 2px solid black;
   padding-right: 30px;
   text-align: center;
+  font-size: 40px;
+  color: #ff9933;
+  padding-top: 50px;
+
 }
 
 .Header {
   height: 150px;
-  padding-left: 180px;
-  font-size: 50px;
+  font-size: 40px;
   color: #ff9933;
-  border-bottom: 2px solid black
+  padding-top: 50px;
+  text-align: center;
 };
 
 .name-Box {
@@ -59,14 +63,25 @@ button{
 }
 .home-Page{
   height: 750px;
-  width: 1600px;
+  width: 1300px;
+  font-size: 30px;
+
+}
+
+.menu-Option{
+  height: 500px;
+  font-size: 20px;
+  float : left;
+  width: 600px;
+  margin-top: 150px;
+  text-align: center;
 }
 
 .to-do-list{
-  height: 650px;
-  font-size: 30px;
+  text-align: center;
+  height: 500px;
+  font-size: 20px;
   float : left;
-  width: 700px;
-  padding-top: 100px;
-  padding-left: 100px;
+  width: 650px;
+  margin-top: 80px;
 };

@@ -2,9 +2,11 @@
 <html>
 
 <head>
+  <link rel="stylesheet" href="../style/toDo.css">
   <script src="../js/addItem.js"></script>
   <script src = "../js/delete_todo.js"></script>
   <script src = "../js/changeStatus.js"></script>
+  <!-- <script src = "../js/deleteItem.js"></script> -->
   <meta charset="utf-8">
   <title></title>
 </head>
@@ -14,9 +16,12 @@
   <h4>Description: DESCRIPTION </h4>
   <div> ITEMS </div><br>
   <div id = "inputArea"> </div><br/><br/>
-  <button id="delete">Delete ToDo</button>&nbsp&nbsp
-  <button id ="edit"> Edit to do</button>&nbsp&nbsp
+  <button id="delete">Delete ToDo</button>
+  <button id ="edit"> Edit to do</button>
   <button id ="addTodoItem"> AddTodoItem</button>
+  <form action="/homePage.html" method="GET">
+    <br><br><input type="submit" name="submit" value="Submit your change">
+  </form>
   <p></p>
 </body>
 

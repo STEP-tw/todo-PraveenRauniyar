@@ -1,4 +1,4 @@
-const MockFileSystem = require('../app/mockFileSystem.js');
+const MockFileSystem = require('./mockFileSystem.js');
 const assert = require('chai').assert;
 describe('MockFileSystem', () => {
   describe('readFileSync', () => {
@@ -62,11 +62,11 @@ describe('MockFileSystem', () => {
       mockfs.addFile('file1', 'hiiii');
     });
     it('appends the content when it has the file', () => {
-      mockfs.appendFile('file1', "hello");
+      mockfs.appendFileSync('file1', "hello");
       assert.equal(mockfs.files.file1, "hiiiihello");
     });
     it(`creates new file with content when there is no such file`, () => {
-      mockfs.appendFile('file', "hello");
+      mockfs.appendFileSync('file', "hello");
       assert.equal(mockfs.files.file, "hello");
     });
   })

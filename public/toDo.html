@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <script src="./js/toDoApp.js" charset="utf-8">
+  <script src="./js/toDo.js" charset="utf-8">
   </script>
   <meta charset="utf-8">
   <link rel="stylesheet" href="../style/toDo.css">
   <title>login</title>
 </head>
+
 <body>
   <div class="Header-Part">
-    <div class="Header">
-      <a href = "index.html" > << </a>
+    <a href="homePage.html">
+      << </a>
         Add To Do
-    </div>
-    <div class="Login-Page">
-      <label><a href = "logout" > Logout  </a>
-      <form id ="toDo" action="addToDo" method="POST">
-        Title :
-        <input class="name-Box" name="title" required><br><br> Description :
-        <input class="description-Box" name="description" required><br><br>
-        <button type="submit">submit</button><br><br>
-      </form>
-      <button id="additem" onclick= "addToDoItem()"> Add To Do Item </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href = "logout" > Logout  </a>
+  </div>
+  <div class="Login-Page">
+    <form id="toDo" action="addToDo" method="POST">
+      Title :
+      <input class="name-Box" name="title" required><br><br> Description :
+      <input class="description-Box" name="description" required><br><br>
+      <button type="submit">submit</button><br><br>
+    </form>
+    <button id="additem" onclick="addToDoItem()"> Add To Do Item </button>
     </div>
   </div>
 </body>

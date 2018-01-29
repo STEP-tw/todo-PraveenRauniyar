@@ -18,7 +18,7 @@ class MockFileSystem {
   writeFileSync(fileName,content){
     this.files[fileName] = content;
   }
-  appendFile(fileName,content){
+  appendFileSync(fileName,content){
     let prev = this.files[fileName] || '';
     this.files[fileName] = prev + content;
   }

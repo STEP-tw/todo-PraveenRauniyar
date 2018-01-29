@@ -16,9 +16,7 @@ class ToDoList {
     return this.toDoItems;
   };
   removeToDoItem(toDoItemId) {
-    if (this.toDoItems[toDoItemId]) {
-      delete this.toDoItems[toDoItemId]
-    }
+    delete this.toDoItems[toDoItemId]
     return this.toDoItems;
   };
   addToDoItem(toDoText) {

@@ -28,9 +28,9 @@ const getUsers = function() {
 
 let users = getUsers();
 
-let toS = o => JSON.stringify(o, null, 2);
+const toS = o => JSON.stringify(o, null, 2);
 
-let logRequest = (req, res,next) => {
+const logRequest = (req, res,next) => {
   let text = ['------------------------------',
     `${timeStamp()}`,
     `${req.method} ${req.url}`,
@@ -38,7 +38,8 @@ let logRequest = (req, res,next) => {
     `COOKIES=> ${toString(req.cookies)}`,
     `BODY=> ${toString(req.body)}`, ''
   ].join('\n');
-  app.fs.appendFile('request.log', text,next);
+  app.fs.appendFileSync('request.log', text);
+  next();
 };
 
 const loadUser = (req, res,next) => {
@@ -52,13 +53,14 @@ const loadUser = (req, res,next) => {
 };
 
 const redirectLoggedInUserToHome = (req, res,next) => {
-  if (req.url == '/login' && req.user) res.redirect('/homePage.html');
-  next();
+  let redirectToHomePageUrls = ['/login',"/","homePage.html"]
+  if (redirectToHomePageUrls.includes(req.url) && req.user) res.redirect('/homePage.html');
+  else next();
 };
 
 const getLoginPage = function(req,res) {
   if (req.cookies && req.cookies.logInFailed){
-    res.write('<p>logIn Failed</p>');
+    res.write('logIn Failed');
   }
   let filePath = "./public/login.html";
   let loginPageContent = readFile(filePath, "utf8");
@@ -80,7 +82,7 @@ const handleIfNotUser = function (res) {
 const postLoginPage = function(req,res) {
   let user = users.getSpecificUser("userName", req.body.userName);
   if (!user) {
-    handleIfNotUser(res);
+    return handleIfNotUser(res);
   };
   user.sessionid = new Date().getTime();
   res.cookie('logInFailed','false',{maxAge: 5,httpOnly: false,signed: false});
@@ -95,13 +97,6 @@ const serveLogout = function(req, res) {
   res.cookie('sessionid','0',{maxAge:5})
   res.redirect("/login");
   writeFile(toS(users.users));
-};
-
-const getFilePath = function(req) {
-  if (req.url == "/") {
-    return `./public/welcomePage.html`;
-  };
-  return `./public${req.url}`;
 };
 
 const addToDo = function(title, description, toDoItem, user) {
@@ -152,14 +147,14 @@ const deleteTodo = function(req,res) {
 const changeStatus = function (req,res) {
   let todo = req.user.getSpecificToDo(req.params.title);
   todo.__proto__ = new Todo().__proto__;
-  if(req.body.status == 'true'){
+  if(req.body.status){
     todo.markAsDone(req.body.id);
   } else{
     todo.markAsNotDone(req.body.id);
   }
   users[req.user.userName] = req.user;
   writeFile(toS(users.users));
-  res.end();
+  res.end()
 }
 
 const parseBody = function (req,res,next) {
@@ -171,9 +166,22 @@ const parseBody = function (req,res,next) {
   });
 };
 
-const dealWithSlash = function (req,res,next) {
-  req.url = '/welcomePage.html';
-  next();
+const addItem = function (req, res) {
+  let todo = req.user.getSpecificToDo(req.body.title);
+  todo.__proto__ = new Todo().__proto__;
+  todo.addToDoItem(req.body.item);
+  users[req.user.userName] = req.user;
+  writeFile(toS(users.users));
+  res.end();
+};
+
+const deleteItem = function (req, res) {
+  let todo = req.user.getSpecificToDo(req.params.title);
+  todo.__proto__ = new Todo().__proto__;
+  todo.removeToDoItem(req.body.id);
+  users[req.user.userName] = req.user;
+  writeFile(toS(users.users));
+  res.end();
 };
 
 // ==============================================================
@@ -183,12 +191,14 @@ app.use(logRequest);
 app.use(loadUser);
 app.use(parseBody);
 app.use(redirectLoggedInUserToHome);
-app.get('/',dealWithSlash);
+app.get('/',serveLogin);
+app.post('/addItem',addItem);
 app.use(express.static('public'));
 app.get('/login', serveLogin);
 app.post('/login',postLoginPage);
 app.get('/todolist', serveListOfTodos);
 app.post('/changeStatus/:title', changeStatus);
+app.post('/deleteItem/:title', deleteItem);
 app.post('/addToDo', postToDoPage);
 app.get('/logout', serveLogout);
 app.get('/todo/:title',serveTodoFile);

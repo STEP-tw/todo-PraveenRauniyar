@@ -1,17 +1,28 @@
 let chai = require('chai');
 let assert = chai.assert;
-let request = require('./requestSimulator.js');
 let app = require('../app/app.js').app;
-let th = require('./testHelper.js');
+let request = require("supertest");
 let Users = require('../models/users.js');
-const MockFileSystem = require('../app/mockFileSystem.js');
+const MockFileSystem = require('./mockFileSystem.js');
 
 let sessionid;
+let doesNotContain = (pattern) => {
+  return (res) => {
+    sessionid = (res.headers['set-cookie'][1].split("=")[1].split(";")[0]);
+    let match = res.text.match(pattern);
+    if (match) throw new Error(`'${res.text}' contains '${pattern}'`);
+  }
+};
+
+let doesNotHaveCookies = (res) => {
+  const keys = Object.keys(res.headers);
+  let key = keys.find(k => k.match(/set-cookie/i));
+  if (key) throw new Error(`Didnot expect Set-Cookie in header of ${keys}`);
+};
 
 describe('app', () => {
-  let mockfs;
   beforeEach(() => {
-    mockfs = new MockFileSystem();
+    let mockfs = new MockFileSystem();
     mockfs.addFile('./public/welcomePage.html', 'Welcome to the To Do App');
     mockfs.addFile('./public/login.html', 'userName');
     mockfs.addFile('./data/users.JSON', `{"praveen": {
@@ -21,228 +32,174 @@ describe('app', () => {
     mockfs.addFile('./public/viewTodo.html', 'Title  Description Add To Do Item')
     app.fs = mockfs;
   });
+
   describe('GET /bad', () => {
-    it('responds with 404', done => {
-      request(app, {
-        method: 'GET',
-        url: '/bad'
-      }, (res) => {
-        console.log(res);
-        assert.equal(res.statusCode, 404);
-        done();
-      });
+    it('responds with 404 for file not exist', done => {
+      request(app)
+        .get("/bad")
+        .expect(404)
+        .end(done)
     });
   });
 
   describe('GET /', () => {
     it('should display welcome page', done => {
-      request(app, {
-        method: 'GET',
-        url: '/'
-      }, res => {
-        th.status_is_ok(res);
-        th.body_contains(res, 'Welcome to the To Do App');
-        done();
-      });
+      request(app)
+        .get("/")
+        .expect(200)
+        .expect("content-Type", /html/)
+        .expect(/userName/)
+        .end(done)
     });
   });
 
   describe('GET /login.html', () => {
     it('serves the login page', done => {
-      request(app, {
-        method: 'GET',
-        url: '/login'
-      }, res => {
-        th.status_is_ok(res);
-        th.body_contains(res, 'userName');
-        th.body_does_not_contain(res, 'logIn Failed');
-        th.should_not_have_cookie(res, 'message');
-        done();
-      });
+      request(app)
+        .get("/login")
+        .expect(200)
+        .expect('Content-Type', /html/)
+        .expect(/userName/)
+        .expect(doesNotHaveCookies)
+        .end(done);
     });
     it('serves the login page with message for a failed login', done => {
-      request(app, {
-        method: 'GET',
-        url: '/login',
-        headers: {
-          'cookie': 'message=login failed'
-        }
-      }, res => {
-        th.status_is_ok(res);
-        th.body_contains(res, 'userName');
-        th.should_not_have_cookie(res, 'message');
-        done();
-      });
+      request(app)
+        .get("/login")
+        .set("Set-Cookie", "message=login failed")
+        .expect(200)
+        .expect("Content-Type", /html/)
+        .expect(/userName/)
+        .expect(doesNotHaveCookies)
+        .end(done)
     });
   });
 
   describe('POST /login', () => {
     it('redirects to home page by setting cookie sessionid', done => {
-      request(app, {
-        method: 'POST',
-        url: '/login',
-        body: 'userName=praveen'
-      }, res => {
-        sessionid = res.headers['Set-Cookie'][0].split('=')[1];
-        th.should_be_redirected_to(res, '/homePage.html');
-        th.should_have_expiring_cookie(res, 'logInFailed', 'false');
-        done();
-      });
+      request(app)
+        .post("/login")
+        .send('userName=praveen')
+        .expect(302)
+        .expect(doesNotContain(/login failed/))
+        .expect("Location", '/homePage.html')
+        .expect('set-cookie', /sessionid/)
+        .end(done)
     });
     it('redirects to login page with message for invalid user', done => {
-      request(app, {
-        method: 'POST',
-        url: '/login',
-        body: 'userName=Amit'
-      }, res => {
-        th.should_be_redirected_to(res, '/login');
-        th.should_have_cookie(res, 'logInFailed', 'true');
-        done();
-      });
+      request(app)
+        .post("/login")
+        .send('userName=pran')
+        .expect(302)
+        .expect("Location", '/login')
+        .expect('set-cookie', /logInFailed=true/)
+        .end(done)
     });
   });
 
   describe('Post /addToDo', function() {
     it('redirects to homepage.html with given data', done => {
-      request(app, {
-        method: 'POST',
-        url: '/addToDo',
-        headers: {
-          'cookie': `sessionid=${sessionid}`
-        },
-        body: 'title=tea&description=makingtea&toDoItem=sugar&toDoItem=water'
-      }, res => {
-        th.should_be_redirected_to(res, '/homePage.html');
-        done();
-      });
+      request(app)
+        .post('/addToDo')
+        .set('cookie', `sessionid=${sessionid}`)
+        .send('title=tea&description=makingtea&toDoItem=sugar&toDoItem=water')
+        .expect(302)
+        .expect("Location", "/homePage.html")
+        .end(done)
     });
   });
 
   describe('Post /addToDo', function() {
     it('redirects to homepage.html with given data if title has space', done => {
-      request(app, {
-        method: 'POST',
-        url: '/addToDo',
-        headers: {
-          'cookie': `sessionid=${sessionid}`
-        },
-        body: 'title=tea%20and%20Water&description=makingtea&toDoItem=sugar'
-      }, res => {
-        th.should_be_redirected_to(res, '/homePage.html');
-        done();
-      });
+      request(app)
+        .post('/addToDo')
+        .set('cookie', `sessionid=${sessionid}`)
+        .send('title=tea%20and%20Water&description=makingtea&toDoItem=sugar')
+        .expect(302)
+        .expect("Location", "/homePage.html")
+        .end(done)
     });
   });
 
   describe("Get /todo", () => {
     it('should give todos of user ', done => {
-      request(app, {
-        method: 'GET',
-        url: '/todo',
-        headers: {
-          'cookie': `sessionid=${sessionid}`
-        }
-      }, res => {
-        th.body_contains(res, 'tea');
-        th.body_contains(res, 'tea and Water');
-        done();
-      });
+      request(app)
+        .get('/todolist')
+        .set('cookie', `sessionid=${sessionid}`)
+        .expect(200)
+        .expect(/tea/)
+        .expect(/tea and Water/)
+        .end(done)
     })
   });
 
 
-  describe("Get /todo--tea", () => {
+  describe("Get /todo", () => {
     it('should give todo of user ', done => {
-      request(app, {
-        method: 'GET',
-        url: '/todo--tea',
-        headers: {
-          'cookie': `sessionid=${sessionid}`
-        }
-      }, res => {
-        th.body_contains(res, "Title");
-        th.body_contains(res, "Description");
-        th.body_contains(res, "Add To Do Item");
-        done();
-      });
+      request(app)
+        .get("/todo/tea")
+        .set('cookie', `sessionid=${sessionid}`)
+        .expect(200)
+        .expect(/Title/)
+        .expect(/Description/)
+        .expect(/Add To Do Item/)
+        .end(done)
     })
-      it('should give todo when title has space', done => {
-        request(app, {
-          method: 'GET',
-          url: '/todo--tea%20and%20Water',
-          headers: {
-            'cookie': `sessionid=${sessionid}`
-          }
-        }, res => {
-          th.body_contains(res, "Title");
-          th.body_contains(res, "Description");
-          th.body_contains(res, "Add To Do Item");
-          done();
-        });
+    it('should give todo when title has space', done => {
+      request(app)
+        .get("/todo/tea and Water")
+        .set('cookie', `sessionid=${sessionid}`)
+        .expect(200)
+        .expect(/Title/)
+        .expect(/Description/)
+        .expect(/Add To Do Item/)
+        .end(done)
     })
   });
 
   describe('changeStatus', function() {
     it('should change the status of given item after checked ', done => {
-      request(app, {
-        method: 'POST',
-        url: '/todo--tea',
-        headers: {
-          'cookie': `sessionid=${sessionid}`
-        },
-        body:"title=tea&id=1&status=true"
-      }, res => {
-        th.status_is_ok(res);
-        done();
-      });
+      request(app)
+      .post('/changeStatus/tea')
+      .set('cookie', `sessionid=${sessionid}`)
+      .send("title=tea&id=1&status=true")
+      .expect(200)
+      .end(done)
     });
   });
-  describe.skip('addItem', function() {
+
+  describe('addItem', function() {
     it('should add item', done => {
-      request(app, {
-        method: 'POST',
-        url: '/addItem',
-        headers: {
-          'cookie': `sessionid=${sessionid}`
-        },
-        body:"title=tea&&toDoItem=sugar&toDoItem=water"
-      }, res => {
-        th.status_is_ok(res);
-        th.should_be_redirected_to(res,"/viewTodo.html");
-        done();
-      });
+      request(app)
+      .post("/addItem")
+      .set('cookie', `sessionid=${sessionid}`)
+      .send("title=tea&&toDoItem=sugar&toDoItem=water")
+      .expect(200)
+      .end(done)
     });
   });
+
   describe('Post /deleteTodo', function() {
     it('should redirect to homePage and delete the given todo', function(done) {
-      request(app, {
-        method: 'POST',
-        url: "/deleteTodo",
-        headers: {
-          'cookie': `sessionid=${sessionid}`
-        },
-        body: "title=tea"
-      }, res => {
-        th.status_is_ok(res);
-        assert.equal(res.headers.location, '/homePage.html');
-        done();
+      request(app)
+      .get("/delete/tea")
+      .set('cookie', `sessionid=${sessionid}`)
+      .expect(200)
+      .expect("Location", "/homePage.html")
+      .end(done)
       });
     });
-  })
+
   describe('GET /logout', () => {
     it('should set expiring cookies and redirect to login page ', done => {
-      request(app, {
-        method: 'GET',
-        url: '/logout',
-        headers: {
-          'cookie': `sessionid=${sessionid}`
-        }
-      }, res => {
-        th.should_be_redirected_to(res, '/login');
-        th.should_have_expiring_cookie(res, 'loginFailed', 'false');
-        th.should_have_expiring_cookie(res, 'sessionid', '0');
-        done();
-      });
+      request(app)
+      .get("/logout")
+      .set('cookie', `sessionid=${sessionid}`)
+      .expect(302)
+      .expect("Location",'/login')
+      .expect('set-cookie', /sessionid=0/)
+      .expect('set-cookie',/loginFailed/)
+      .end(done)
     });
   });
 });
