@@ -3,10 +3,10 @@ const toHtml = function(content, item, serialNumber, itemId) {
   if(item.status){
     checked = "checked";
   }
-  return `<br><br>${serialNumber}. <big>${item.toDoItem}</big>
+  return `<span><br><br>${serialNumber}. <big>${item.toDoItem}</big>
     &nbsp&nbsp<input type = "checkbox" ${checked} id = "${itemId}"
    onclick = "changeStatus(event)"/>&nbsp &nbsp &nbsp &nbsp
-   <button id="${itemId}"  onclick = "deleteItem(event)">Delete This Item</button> `;
+   <button id="${itemId}"  onclick = "deleteItem(event)">Delete This Item</button></span> `;
 };
 
 const getAllToDoInHtml = function(content, todo, toFormat) {

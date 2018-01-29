@@ -9,6 +9,8 @@ const changeStatus = (event) => {
 
 const deleteItem = (event) => {
   let id = event.target.id;
+  let todoItem = document.getElementById(id);
+  todoItem.parentElement.remove();
   let oReq = new XMLHttpRequest();
   oReq.open("POST", `/deleteItem/${getTitle()}`);
   oReq.send(`id=${id}`);
